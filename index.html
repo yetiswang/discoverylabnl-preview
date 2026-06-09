@@ -1814,13 +1814,17 @@
         }
         .hero-nav-row {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 1.25rem;
+            gap: 1rem;
             margin-top: 1.5rem;
             padding-top: 0.5rem;
             flex-wrap: wrap;
+            width: 100%;
         }
+        /* On the methodology slide the nav row sits at full slide width with buttons pinned to left and right edges,
+           so the centered pull quote above stays readable underneath the sticky bar. */
+        #dlnl-claim-slide-2 > .hero-nav-row { align-self: stretch !important; }
         .hero-nav-row .hero-back,
         .hero-nav-row .hero-continue-link {
             display: inline-flex; align-items: center; gap: 0.5rem;
