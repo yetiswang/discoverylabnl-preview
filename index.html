@@ -1545,12 +1545,13 @@
 
         /* ---------- World Today (3 cards + SDL map) ---------- */
         #world-today {
-            padding: 3rem 1.5rem 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: auto;
-            display: block;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+        #world-today > * { max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto; }
         #world-today h2 {
             font-family: 'Avenir Next LT Pro', sans-serif;
             font-weight: 700;
@@ -1638,35 +1639,38 @@
 
         /* ---------- DLNL Claim (hero paragraph section) ---------- */
         #dlnl-claim {
-            padding: 4rem 1.5rem;
-            max-width: 860px;
-            margin: 0 auto;
-            min-height: auto;
-            display: block;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+        #dlnl-claim > * { max-width: 860px; width: 100%; margin-left: auto; margin-right: auto; }
         #dlnl-claim h2 {
             font-family: 'Avenir Next LT Pro', sans-serif;
             font-weight: 700;
-            font-size: clamp(1.8rem, 3.6vw, 2.5rem);
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+            margin-bottom: 1.25rem;
             color: var(--tue-dark);
             line-height: 1.2;
         }
         #dlnl-claim .challenge-text {
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 0.98rem;
+            line-height: 1.65;
             color: var(--tue-dark);
+            margin-bottom: 1.25rem;
         }
         #dlnl-claim .challenge-text strong { font-weight: 700; color: var(--tue-dark); }
 
         /* ---------- Revolution (4-card grid) ---------- */
         #revolution {
-            padding: 3rem 1.5rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: auto;
-            display: block;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+        #revolution > * { max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto; }
         #revolution h2 {
             font-family: 'Avenir Next LT Pro', sans-serif;
             font-weight: 700;
@@ -1686,39 +1690,48 @@
         .frontier-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem;
+            gap: 1.5rem;
         }
+        /* Frontier cards adopt the Discovery Domain visual: surface + left red strip + shadow + hover */
         .frontier-card {
-            padding: 1.25rem;
             background: var(--surface);
-            border: 1px solid var(--tue-light-border);
-            border-radius: 6px;
-            transition: border-color 0.25s ease;
+            border-left: 4px solid var(--tue-red);
+            padding: 1.5rem 1.25rem 1.5rem 1.1rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px var(--shadow-soft);
             display: flex;
             flex-direction: column;
+            gap: 0.7rem;
+            transition: background 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .frontier-card:hover { border-color: var(--tue-red); }
+        .frontier-card:hover { box-shadow: 0 8px 24px var(--shadow-mid); }
+        .frontier-icon {
+            width: 36px; height: 36px;
+            color: var(--tue-red); opacity: 0.85;
+            flex-shrink: 0;
+        }
+        .frontier-icon svg { width: 100%; height: 100%; }
         .frontier-domain {
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            font-size: 0.7rem;
-            color: var(--tue-red);
+            font-size: 0.68rem;
+            color: var(--tue-gray);
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
         }
         .frontier-headline {
             font-family: 'Avenir Next LT Pro', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.7rem;
+            font-size: 1.05rem;
             color: var(--tue-dark);
             line-height: 1.3;
+            margin: 0;
         }
         .frontier-vision {
             font-size: 0.85rem;
-            line-height: 1.5;
-            color: var(--tue-dark);
-            margin-bottom: 0;
+            line-height: 1.55;
+            color: var(--tue-gray);
+            margin: 0;
         }
         .frontier-vision em { font-style: italic; color: var(--tue-dark); }
         .frontier-vision strong { font-weight: 700; color: var(--tue-red); }
@@ -1787,7 +1800,7 @@
                     <li class="active"><a href="#landing">Landing</a></li>
                     <li><a href="#challenge">The Challenge</a></li>
                     <li><a href="#pillars">Three Pillars</a></li>
-                    <li><a href="#domains">Discovery Domains</a></li>
+                    <li><a href="#revolution">Frontiers</a></li>
                     <li><a href="#campus">Campus Partners</a></li>
                     <li><a href="#consortium">An Open Consortium</a></li>
                     <li><a href="#landscape">Landscape</a></li>
@@ -1918,21 +1931,18 @@
 
                 <div class="sdl-map-block reveal">
                     <p class="sdl-map-eyebrow">The Dutch SDL landscape, today</p>
-                    <h3>Where the Netherlands already builds self-driving laboratories.</h3>
-                    <p>Existing Dutch SDL nodes, characterisation facilities, and AI-for-materials groups across institutions. DiscoveryLabNL federates these into a single orchestrated infrastructure rather than a parallel one.</p>
-                    <iframe class="sdl-map-iframe" src="https://sdl-map.discoverylabs.nl/" title="Dutch SDL landscape map" loading="lazy"></iframe>
-                    <a class="sdl-map-cta" href="https://sdl-map.discoverylabs.nl/" target="_blank" rel="noopener">Open the SDL landscape map &rarr;</a>
+                    <p>Existing Dutch SDL nodes, characterisation facilities, and AI-for-materials groups across the four research universities and NWO institutes. DiscoveryLabNL federates these into a single orchestrated infrastructure rather than a parallel one.</p>
+                    <a class="sdl-map-cta" href="https://sdl-map.discoverylabs.nl/" target="_blank" rel="noopener">Explore the SDL landscape map &rarr;</a>
                 </div>
             </section>
 
             <!-- 3. The DLNL Claim -->
             <section id="dlnl-claim">
                 <h2 class="reveal">Designing what materials do, not just what they are.</h2>
-                <p class="challenge-text">The Netherlands has a choice to make about how it builds the next materials revolution. The last decade closed the structure-prediction question: universal AI models now produce hundreds of thousands of stable crystals on demand. The next decade is the <strong>function-prediction</strong> question, in regimes computation alone cannot reach. The breakthroughs that matter most acquire their function through dynamics and across length scales that no first-principles model can simulate to ground truth. <strong>Interactive polymer function design is the anchor demonstrator that proves the architecture in the first five years; designer catalysts, programmable mechanical matter, and optoelectronic substrates extend it.</strong> Five years ago, predicting and designing that function was guesswork. Five years from now, it can be a closed loop. DiscoveryLabNL is the Dutch national infrastructure that makes AI-driven materials discovery <strong>verifiable</strong> at scale: AI proposes, robotic synthesis executes, multimodal experimental characterisation verifies what computation cannot reach, and <strong>quantum-physics-informed digital twins</strong> anchor the design rules in physics rather than in fitted data. <strong>One infrastructure, one scientific argument, four frontiers</strong>, and the Dutch interface for the global materials genome other regions are already racing to build. The alternative is <strong>fragmented, hollow labs that do not compound</strong>. DiscoveryLabNL offers the <strong>augmented lab</strong>, where every FAIR multimodal verification lowers the cost of the next discovery. This is the materials revolution the Netherlands is uniquely positioned to deliver, in a single orchestrated effort.</p>
+                <p class="challenge-text">The structure-prediction question is solved by universal AI. The next decade is the <strong>function-prediction</strong> question, in regimes computation alone cannot reach. <strong>Interactive polymer function design is the anchor demonstrator; designer catalysts, programmable mechanical matter, and optoelectronic substrates extend it.</strong> Five years ago, designing for function was guesswork. Five years from now, it can be a closed loop. DiscoveryLabNL makes AI-driven materials discovery <strong>verifiable</strong> at scale: AI proposes, robotic synthesis executes, multimodal characterisation verifies what computation cannot reach, and <strong>quantum-physics-informed digital twins</strong> anchor design rules in physics rather than in fitted data. <strong>One infrastructure, one scientific argument, four frontiers</strong>, and the Dutch interface for the global materials genome. The alternative is <strong>fragmented, hollow labs that do not compound</strong>. DiscoveryLabNL is the <strong>augmented lab</strong>, where every FAIR multimodal verification lowers the cost of the next discovery.</p>
                 <div class="challenge-callout reveal">
                     <p>DiscoveryLabNL is a joint DIFFER &times; TU/e initiative: a shared infrastructure for autonomous materials discovery, integrating self-driving laboratories, advanced multimodal characterisation, and an AI Core to accelerate the design, synthesis, and validation of next-generation materials.</p>
                 </div>
-                <p class="challenge-text">DIFFER and TU/e together anchor nationally recognised SDL foundations: DIFFER's autonomous energy-materials discovery capacity led by Suleyman Er anchors the LSRI Materials group pathway, and TU/e's ICMS contributes SDL platforms developed through the NWO Gravitation Programme Interactive Polymer Materials (IPM) and the National Growth Fund programme Big Chemistry, establishing a proven joint platform for this next step.</p>
             </section>
 
             <!-- 4. The Revolution -->
@@ -1940,26 +1950,71 @@
                 <h2 class="reveal">The Revolution We Enable</h2>
                 <p class="section-eyebrow reveal">Four Frontiers, One Architecture</p>
 
-                <div class="frontier-grid">
-                    <div class="frontier-card reveal">
+                <div class="frontier-grid reveal-group">
+                    <div class="frontier-card">
+                        <div class="frontier-icon">
+                            <!-- Interactive polymers: hydrogel / droplet network scaffold -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="7" r="3.5"/>
+                                <circle cx="6.5" cy="16" r="3"/>
+                                <circle cx="17.5" cy="16" r="3"/>
+                                <line x1="10" y1="9.8" x2="8" y2="13.5" opacity="0.45"/>
+                                <line x1="14" y1="9.8" x2="16" y2="13.5" opacity="0.45"/>
+                                <line x1="9.5" y1="16" x2="14.5" y2="16" opacity="0.45"/>
+                            </svg>
+                        </div>
                         <p class="frontier-domain">Frontier A</p>
                         <h3 class="frontier-headline">Interactive polymers</h3>
                         <p class="frontier-vision"><strong>By 2035:</strong> <em>Designing a polymer that senses, actuates, reconfigures, and computes is a five-year programme, not a career.</em></p>
                     </div>
 
-                    <div class="frontier-card reveal">
+                    <div class="frontier-card">
+                        <div class="frontier-icon">
+                            <!-- Designer catalysts: sun with bolt -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"/>
+                                <path d="M12 2v3m0 14v3M4.22 4.22l2.12 2.12m11.32 11.32l2.12 2.12M2 12h3m14 0h3M4.22 19.78l2.12-2.12m11.32-11.32l2.12-2.12"/>
+                                <path d="M13 10l-2.5 3h3L11 16" stroke-width="1.8"/>
+                            </svg>
+                        </div>
                         <p class="frontier-domain">Frontier B</p>
                         <h3 class="frontier-headline">Designer catalysts and energy materials</h3>
                         <p class="frontier-vision"><strong>By 2035:</strong> <em>Finding a catalyst for a target transformation is a design problem, not a discovery problem, and Europe does not depend on critical raw materials to do it.</em></p>
                     </div>
 
-                    <div class="frontier-card reveal">
+                    <div class="frontier-card">
+                        <div class="frontier-icon">
+                            <!-- Programmable mechanical matter: hex lattice / architected geometry -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12,3 19,7 19,15 12,19 5,15 5,7"/>
+                                <polygon points="12,7 16,9.5 16,13.5 12,16 8,13.5 8,9.5" opacity="0.5"/>
+                                <line x1="12" y1="3" x2="12" y2="7" opacity="0.45"/>
+                                <line x1="12" y1="16" x2="12" y2="19" opacity="0.45"/>
+                                <line x1="5" y1="7" x2="8" y2="9.5" opacity="0.45"/>
+                                <line x1="19" y1="7" x2="16" y2="9.5" opacity="0.45"/>
+                                <line x1="5" y1="15" x2="8" y2="13.5" opacity="0.45"/>
+                                <line x1="19" y1="15" x2="16" y2="13.5" opacity="0.45"/>
+                            </svg>
+                        </div>
                         <p class="frontier-domain">Frontier C</p>
                         <h3 class="frontier-headline">Programmable mechanical matter</h3>
                         <p class="frontier-vision"><strong>By 2035:</strong> <em>Mechanical, acoustic, and thermal properties are designed by architecture across six orders of magnitude in length scale, decoupled from chemistry.</em></p>
                     </div>
 
-                    <div class="frontier-card reveal">
+                    <div class="frontier-card">
+                        <div class="frontier-icon">
+                            <!-- Optoelectronic substrates: LED with light rays -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 6 L7 18 L15 12 Z"/>
+                                <line x1="15" y1="6" x2="15" y2="18"/>
+                                <line x1="17.5" y1="8" x2="20.5" y2="5" opacity="0.55"/>
+                                <polyline points="18.6,5 20.5,5 20.5,6.9" opacity="0.55"/>
+                                <line x1="17.5" y1="12" x2="21" y2="12" opacity="0.55"/>
+                                <polyline points="19.5,10.5 21,12 19.5,13.5" opacity="0.55"/>
+                                <line x1="17.5" y1="16" x2="20.5" y2="19" opacity="0.55"/>
+                                <polyline points="18.6,19 20.5,19 20.5,17.1" opacity="0.55"/>
+                            </svg>
+                        </div>
                         <p class="frontier-domain">Frontier D</p>
                         <h3 class="frontier-headline">Optoelectronic substrates</h3>
                         <p class="frontier-vision"><strong>By 2035:</strong> <em>The materials of the post-silicon era are discovered by design, not by serendipity, in the Netherlands.</em></p>
@@ -2089,8 +2144,8 @@
                 <span class="loop-caption">The Autonomous Discovery Loop</span>
             </section>
 
-            <!-- 3b. Discovery Domains -->
-            <section id="domains">
+            <!-- 3b. Discovery Domains [REMOVED 2026-06-09 — frontier cards in #revolution carry this content] -->
+            <section id="domains" style="display:none;" aria-hidden="true">
                 <h2 class="reveal">Discovery Domains</h2>
                 <p class="domains-intro reveal">Candidate research domains where autonomous, closed-loop experimentation can deliver transformative impact in advanced materials, energy, circularity, and soft matter.</p>
                 <div class="domains-grid reveal-group">
