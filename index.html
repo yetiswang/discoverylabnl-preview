@@ -1727,6 +1727,41 @@
         }
         .methodology-text strong { color: white; font-weight: 700; }
         .methodology-text em { color: rgba(255,255,255,0.95); font-style: italic; }
+        .methodology-text-secondary {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.72);
+            max-width: 780px;
+            margin-bottom: 1.25rem;
+        }
+        .methodology-pull-quote {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+            color: white;
+            text-align: center;
+            line-height: 1.35;
+            margin: 1.5rem auto 0;
+            max-width: 720px;
+            padding: 1rem 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.18);
+            letter-spacing: -0.005em;
+        }
+        .methodology-pull-quote::before {
+            content: '\201C';
+            color: var(--tue-red);
+            font-style: normal;
+            font-weight: 700;
+            margin-right: 0.2em;
+        }
+        .methodology-pull-quote::after {
+            content: '\201D';
+            color: var(--tue-red);
+            font-style: normal;
+            font-weight: 700;
+            margin-left: 0.1em;
+        }
         .methodology-svg-wrap {
             flex: 1;
             display: flex;
@@ -2081,6 +2116,7 @@
                     <p class="hero-slide-label hero-slide-label-light">Slide 2 of 3 &middot; Our methodology</p>
                     <h3 class="methodology-title">The Autonomous Discovery Loop</h3>
                     <p class="methodology-text">DiscoveryLabNL operates a continuous loop between <em>exploration</em> and <em>interpretation</em>. The <strong>AI Core</strong> proposes candidate designs grounded in quantum-physics-informed digital twins. <strong>Self-Driving Labs</strong> synthesise and execute at scale. <strong>Advanced Multimodal Characterisation</strong> verifies what computation cannot reach. Every turn closes back into the AI Core and lowers the cost of the next discovery.</p>
+                    <p class="methodology-text-secondary">Like a mind that works fast and slow, DiscoveryLabNL pairs fast exploration with slow, careful interpretation. Self-Driving Labs propose and execute at scale; Advanced Multimodal Characterisation verifies what computation cannot reach; the AI Core learns the design rules that close the loop. Discovery requires both speeds, working together, for results to be verifiable.</p>
                     <div class="methodology-svg-wrap">
 <svg viewBox="150 30 600 420" xmlns="http://www.w3.org/2000/svg" class="loop-svg">
                         <defs>
@@ -2161,6 +2197,7 @@
                         <!-- Subtitle -->
                     </svg>
                     </div>
+                    <p class="methodology-pull-quote">Fast and slow, working together, for verifiable discoveries.</p>
                     <div class="hero-nav-row">
                         <a class="hero-back" href="#dlnl-claim-slide-1" aria-label="Back to slide 1">&uarr; Back to slide 1</a>
                         <a class="hero-continue-link" href="#dlnl-claim-slide-3" aria-label="Continue to slide 3">Continue to slide 3 &darr;</a>
@@ -4397,7 +4434,8 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
         // ==========================================
         const prevBtn = document.getElementById('prevSection');
         const nextBtn = document.getElementById('nextSection');
-        const navSections = Array.from(document.querySelectorAll('section[id]'));
+        const navSections = Array.from(document.querySelectorAll('section[id]:not([style*="display:none"]), .hero-slide[id]'))
+            .sort((a, b) => a.getBoundingClientRect().top + window.pageYOffset - (b.getBoundingClientRect().top + window.pageYOffset));
 
         function getCurrentSectionIndex() {
             let idx = 0;
