@@ -1637,28 +1637,22 @@
             padding-bottom: 2px;
         }
 
-        /* ---------- DLNL Claim (hero paragraph section) ---------- */
+        /* ---------- DLNL Claim (hero paragraph section, full width like #challenge) ---------- */
         #dlnl-claim {
-            padding: 4rem 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            /* inherits section defaults: min-height 100vh, padding 5rem 4rem, flex column centered */
         }
-        #dlnl-claim > * { max-width: 860px; width: 100%; margin-left: auto; margin-right: auto; }
         #dlnl-claim h2 {
-            font-family: 'Avenir Next LT Pro', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.8rem, 3.6vw, 2.4rem);
-            margin-bottom: 1.25rem;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 2rem;
             color: var(--tue-dark);
             line-height: 1.2;
+            font-weight: 700;
         }
         #dlnl-claim .challenge-text {
-            font-size: 0.98rem;
-            line-height: 1.65;
-            color: var(--tue-dark);
-            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--tue-gray);
         }
         #dlnl-claim .challenge-text strong { font-weight: 700; color: var(--tue-dark); }
 
@@ -1692,19 +1686,18 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
         }
-        /* Frontier cards adopt the Discovery Domain visual: surface + left red strip + shadow + hover */
+        /* Frontier cards match the World Today card design (uniform thin border, no accent strip) */
         .frontier-card {
             background: var(--surface);
-            border-left: 4px solid var(--tue-red);
-            padding: 1.5rem 1.25rem 1.5rem 1.1rem;
-            border-radius: 2px;
-            box-shadow: 0 2px 8px var(--shadow-soft);
+            border: 1px solid var(--tue-light-border);
+            border-radius: 6px;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             gap: 0.7rem;
-            transition: background 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: background 0.25s ease, border-color 0.25s ease;
         }
-        .frontier-card:hover { box-shadow: 0 8px 24px var(--shadow-mid); }
+        .frontier-card:hover { border-color: var(--tue-red); }
         .frontier-icon {
             width: 36px; height: 36px;
             color: var(--tue-red); opacity: 0.85;
@@ -1798,9 +1791,10 @@
             <nav>
                 <ul class="sidebar-nav">
                     <li class="active"><a href="#landing">Landing</a></li>
-                    <li><a href="#challenge">The Challenge</a></li>
+                    <li><a href="#dlnl-claim">From Atom to Function</a></li>
+                    <li><a href="#world-today">The World Today</a></li>
                     <li><a href="#pillars">Three Pillars</a></li>
-                    <li><a href="#revolution">Frontiers</a></li>
+                    <li><a href="#revolution">Four Frontiers</a></li>
                     <li><a href="#campus">Campus Partners</a></li>
                     <li><a href="#consortium">An Open Consortium</a></li>
                     <li><a href="#landscape">Landscape</a></li>
@@ -1911,7 +1905,16 @@
             </section>
             <div class="landing-scroll">&darr; Scroll to explore</div>
 
-            <!-- 2. The World Today -->
+            <!-- 2. The DLNL Claim (Hero) -->
+            <section id="dlnl-claim">
+                <h2 class="reveal">From Atom to Function: designing what materials do, not only what they are.</h2>
+                <p class="challenge-text">The structure-prediction question is solved by universal AI. The next decade is the <strong>function-prediction</strong> question, in regimes computation alone cannot reach. <strong>Interactive polymers, designer catalysts, programmable mechanical matter, and optoelectronic substrates are four candidate demonstrators</strong>, each a domain where Dutch science already leads the world. Five years ago, designing for function was guesswork. Five years from now, it can be a closed loop. DiscoveryLabNL makes AI-driven materials discovery <strong>verifiable</strong> at scale: AI proposes, robotic synthesis executes, multimodal experimental characterisation verifies what computation cannot reach, and <strong>quantum-physics-informed digital twins</strong> ground design rules in physics rather than in fitted data, <strong>closing the knowledge chain from atom to function</strong> across all four frontiers. <strong>One infrastructure, one scientific argument, four candidate demonstrators</strong>, and the Dutch interface for the global materials genome. The alternative is <strong>fragmented, hollow labs that do not compound</strong>. DiscoveryLabNL is the <strong>augmented lab</strong>, where every FAIR multimodal verification lowers the cost of the next discovery.</p>
+                <div class="challenge-callout reveal">
+                    <p>DiscoveryLabNL is a joint DIFFER &times; TU/e initiative: a shared infrastructure for autonomous materials discovery, integrating self-driving laboratories, advanced multimodal characterisation, and an AI Core to accelerate the design, synthesis, and validation of next-generation materials.</p>
+                </div>
+            </section>
+
+            <!-- 3. The World Today -->
             <section id="world-today">
                 <h2 class="reveal">The World Today</h2>
                 <div class="world-today-grid">
@@ -1933,15 +1936,6 @@
                     <p class="sdl-map-eyebrow">The Dutch SDL landscape, today</p>
                     <p>Existing Dutch SDL nodes, characterisation facilities, and AI-for-materials groups across the four research universities and NWO institutes. DiscoveryLabNL federates these into a single orchestrated infrastructure rather than a parallel one.</p>
                     <a class="sdl-map-cta" href="https://sdl-map.discoverylabs.nl/" target="_blank" rel="noopener">Explore the SDL landscape map &rarr;</a>
-                </div>
-            </section>
-
-            <!-- 3. The DLNL Claim -->
-            <section id="dlnl-claim">
-                <h2 class="reveal">Designing what materials do, not just what they are.</h2>
-                <p class="challenge-text">The structure-prediction question is solved by universal AI. The next decade is the <strong>function-prediction</strong> question, in regimes computation alone cannot reach. <strong>Interactive polymer function design is the anchor demonstrator; designer catalysts, programmable mechanical matter, and optoelectronic substrates extend it.</strong> Five years ago, designing for function was guesswork. Five years from now, it can be a closed loop. DiscoveryLabNL makes AI-driven materials discovery <strong>verifiable</strong> at scale: AI proposes, robotic synthesis executes, multimodal experimental characterisation verifies what computation cannot reach, and <strong>quantum-physics-informed digital twins</strong> anchor design rules in physics rather than in fitted data, <strong>closing the knowledge chain from atom to function</strong> across four materials frontiers. <strong>One infrastructure, one scientific argument, four frontiers</strong>, and the Dutch interface for the global materials genome. The alternative is <strong>fragmented, hollow labs that do not compound</strong>. DiscoveryLabNL is the <strong>augmented lab</strong>, where every FAIR multimodal verification lowers the cost of the next discovery.</p>
-                <div class="challenge-callout reveal">
-                    <p>DiscoveryLabNL is a joint DIFFER &times; TU/e initiative: a shared infrastructure for autonomous materials discovery, integrating self-driving laboratories, advanced multimodal characterisation, and an AI Core to accelerate the design, synthesis, and validation of next-generation materials.</p>
                 </div>
             </section>
 
