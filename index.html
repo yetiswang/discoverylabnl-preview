@@ -1664,16 +1664,17 @@
         #dlnl-claim .hero-continue { margin-top: 0.75rem !important; }
         .hero-slide {
             min-height: 100vh;
-            padding: 5rem 4rem 1.5rem;
+            padding: 5rem 4rem 2rem;
             display: flex;
             flex-direction: column;
-            scroll-margin-top: 75px;  /* sticky header height */
             justify-content: center;
+            gap: 0.6rem;
+            scroll-margin-top: 75px;  /* sticky header height */
         }
-        /* Continue / Back / nav-row affordances stay at the bottom even with content centered */
+        /* Continue/Back/nav-row sit at the bottom of the centered cluster with a little top breathing room */
         .hero-slide > .hero-continue,
         .hero-slide > .hero-back,
-        .hero-slide > .hero-nav-row { margin-top: auto; }
+        .hero-slide > .hero-nav-row { margin-top: 1.5rem; }
         /* Hide the floating right-side section-nav: in-slide Continue/Back covers it */
         .section-nav { display: none !important; }
         .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
