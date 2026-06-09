@@ -1655,17 +1655,18 @@
             color: var(--tue-gray);
         }
         #dlnl-claim .challenge-text strong { font-weight: 700; color: var(--tue-dark); }
-        /* Two slides stacked vertically inside the hero; each fills one viewport */
+        /* Two slides stacked vertically inside the hero; each fills exactly one viewport, content flows from top, footer stuck to bottom */
         #dlnl-claim { min-height: auto; padding: 0; display: block; }
         .hero-slide {
             min-height: calc(100vh - var(--banner-height));
-            padding: 5rem 4rem;
+            padding: 4rem 4rem 3rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             scroll-margin-top: var(--banner-height);
         }
         .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
+        /* Push the Continue button (and the slide-2 back link) to the bottom of the viewport so the slide reads as a clean unit */
+        .hero-continue, .hero-back { margin-top: auto; }
         .hero-slide-label {
             text-transform: uppercase;
             letter-spacing: 0.14em;
@@ -1700,6 +1701,26 @@
             background: var(--tue-red);
             color: white;
             border-color: var(--tue-red);
+        }
+        /* Back-to-slide-1 affordance on slide 2 */
+        .hero-back { display: flex; justify-content: center; padding-top: 2rem; }
+        .hero-back a {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            border: 1px solid var(--tue-light-border);
+            border-radius: 9999px;
+            color: var(--tue-gray);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+        .hero-back a:hover {
+            background: var(--tue-dark); color: white; border-color: var(--tue-dark);
         }
         @media (max-width: 720px) {
             .hero-slide { padding: 3rem 1.5rem; }
@@ -1820,7 +1841,7 @@
         /* Sections inherit min-height: 100vh from the base section rule; compensate for the banner so they actually fit one viewport. */
         body section { min-height: calc(100vh - var(--banner-height)); }
         /* The landing section sets its own min-height (85vh) and is handled there. */
-        body #landing { min-height: calc(85vh - var(--banner-height)); }
+        body #landing { min-height: calc(100vh - var(--banner-height)); }
     </style>
 
     <!-- Scroll progress bar -->
@@ -1860,7 +1881,8 @@
             <nav>
                 <ul class="sidebar-nav">
                     <li class="active"><a href="#landing">Landing</a></li>
-                    <li><a href="#dlnl-claim">From Atom to Function</a></li>
+                    <li><a href="#dlnl-claim-slide-1">From Atom to Function</a></li>
+                    <li><a href="#dlnl-claim-slide-2">Challenge &amp; Infrastructure</a></li>
                     <li><a href="#world-today">The World Today</a></li>
                     <li><a href="#pillars">Three Pillars</a></li>
                     <li><a href="#revolution">Four Frontiers</a></li>
@@ -1995,6 +2017,9 @@
                     <p class="challenge-text">DIFFER and TU/e together hold nationally recognised SDL foundations: DIFFER's autonomous energy-materials discovery capacity led by Suleyman Er underpins the LSRI Materials group pathway, and TU/e's ICMS contributes SDL platforms developed through the NWO Gravitation Programme Interactive Polymer Materials (IPM) and the National Growth Fund programme Big Chemistry, establishing a proven joint platform for this next step.</p>
                     <p class="challenge-text">DiscoveryLabNL is the <strong>augmented lab</strong>: one infrastructure, one scientific argument, four candidate demonstrators, and the Dutch interface for the global materials genome. Every FAIR multimodal verification lowers the cost of the next discovery. The alternative is <strong>fragmented, hollow labs that do not compound</strong>.</p>
                     <p class="challenge-text">The stakes extend well beyond the laboratory. The energy transition, the shift toward circular material flows, and the search for sustainable alternatives to critical raw materials are all bottlenecked by the pace of materials discovery. These are not problems that incremental experimentation can solve at the speed society requires. Infrastructure that systematically accelerates the design, synthesis, and validation of new materials is no longer a competitive advantage; it is a societal necessity.</p>
+                    <div class="hero-back">
+                        <a href="#dlnl-claim-slide-1" aria-label="Back to slide 1">&uarr; Back to slide 1</a>
+                    </div>
                 </div>
             </section>
 
