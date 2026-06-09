@@ -1649,24 +1649,26 @@
             font-weight: 700;
         }
         #dlnl-claim .challenge-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.65;
+            margin-bottom: 0.75rem;
             color: var(--tue-gray);
         }
         #dlnl-claim .challenge-text strong { font-weight: 700; color: var(--tue-dark); }
         /* Two slides stacked vertically inside the hero; each fills exactly one viewport, content flows from top, footer stuck to bottom */
         #dlnl-claim { min-height: auto; padding: 0; display: block; }
+        #dlnl-claim h2 { margin-bottom: 0.6rem !important; font-size: clamp(1.6rem, 3vw, 2.1rem) !important; }
+        #dlnl-claim .challenge-callout { margin-top: 0.5rem !important; margin-bottom: 0.75rem !important; padding: 1rem 1.25rem !important; }
+        #dlnl-claim .challenge-callout p { font-size: 0.95rem !important; line-height: 1.5 !important; }
+        #dlnl-claim .hero-slide-label { margin-bottom: 0.5rem; }
+        #dlnl-claim .hero-continue { margin-top: 0.75rem !important; }
         .hero-slide {
             min-height: 100vh;
-            padding: 2.5rem 4rem 1.75rem;
+            padding: 2rem 4rem 1.5rem;
             display: flex;
             flex-direction: column;
             scroll-margin-top: var(--banner-height);
         }
-        .hero-slide .challenge-text { margin-bottom: 1rem; }
-        .hero-slide h2 { margin-bottom: 1rem; }
-        .hero-slide-label { margin-bottom: 0.75rem; }
         .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
         /* Push the Continue button (and the slide-2 back link) to the bottom of the viewport so the slide reads as a clean unit */
         .hero-continue, .hero-back { margin-top: auto; }
