@@ -1671,10 +1671,16 @@
             gap: 0.6rem;
             scroll-margin-top: 75px;  /* sticky header height */
         }
-        /* Continue/Back/nav-row sit at the bottom of the centered cluster with a little top breathing room */
+        /* Continue/Back/nav-row stay PINNED to the bottom of the viewport as long as the slide is in view */
         .hero-slide > .hero-continue,
         .hero-slide > .hero-back,
-        .hero-slide > .hero-nav-row { margin-top: 1.5rem; }
+        .hero-slide > .hero-nav-row {
+            position: sticky;
+            bottom: 1.5rem;
+            z-index: 50;
+            margin-top: 1.5rem;
+            align-self: center;
+        }
         /* Floating right-side section-nav restored. */
         .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
         /* Push the Continue button (and the slide-2 back link) to the bottom of the viewport so the slide reads as a clean unit */
