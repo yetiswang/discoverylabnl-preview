@@ -1664,11 +1664,18 @@
         #dlnl-claim .hero-continue { margin-top: 0.75rem !important; }
         .hero-slide {
             min-height: 100vh;
-            padding: 2rem 4rem 1.5rem;
+            padding: 5rem 4rem 1.5rem;
             display: flex;
             flex-direction: column;
-            scroll-margin-top: var(--banner-height);
+            scroll-margin-top: 75px;  /* sticky header height */
+            justify-content: center;
         }
+        /* Continue / Back / nav-row affordances stay at the bottom even with content centered */
+        .hero-slide > .hero-continue,
+        .hero-slide > .hero-back,
+        .hero-slide > .hero-nav-row { margin-top: auto; }
+        /* Hide the floating right-side section-nav: in-slide Continue/Back covers it */
+        .section-nav { display: none !important; }
         .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
         /* Push the Continue button (and the slide-2 back link) to the bottom of the viewport so the slide reads as a clean unit */
         .hero-continue, .hero-back { margin-top: auto; }
