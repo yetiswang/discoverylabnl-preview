@@ -1602,8 +1602,26 @@
             font-size: 0.72rem;
             color: var(--tue-red);
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin: 0;
         }
+        .sdl-map-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .sdl-map-favicon {
+            width: 22px;
+            height: 22px;
+            display: block;
+            border-radius: 4px;
+            background: rgba(200,16,46,0.08);
+            padding: 2px;
+            border: 1px solid var(--tue-light-border);
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+        .sdl-map-block strong { color: var(--tue-red); font-weight: 700; }
         .sdl-map-block h3 {
             font-family: 'Avenir Next LT Pro', sans-serif;
             font-weight: 700;
@@ -2256,9 +2274,12 @@
                 </div>
 
                 <div class="sdl-map-block reveal">
-                    <p class="sdl-map-eyebrow">The Dutch SDL landscape, today</p>
-                    <p>Existing Dutch SDL nodes, characterisation facilities, and AI-for-materials groups across the four research universities and NWO institutes. DiscoveryLabNL federates these into a single orchestrated infrastructure rather than a parallel one.</p>
-                    <a class="sdl-map-cta" href="https://sdl-map.discoverylabs.nl/" target="_blank" rel="noopener">Explore the SDL landscape map &rarr;</a>
+                    <div class="sdl-map-header">
+                        <img class="sdl-map-favicon" src="https://sdl-map.discoverylabs.nl/favicon.svg" alt="" onerror="this.onerror=null;this.src='https://sdl-map.discoverylabs.nl/favicon.ico';" loading="lazy" decoding="async">
+                        <p class="sdl-map-eyebrow">The global SDL landscape</p>
+                    </div>
+                    <p>Global initiatives with large-scale funding are fuelling the materials revolution. The Netherlands needs to wake up, join, and lead the <strong>verifiable discoveries</strong> that shape the next decade.</p>
+                    <a class="sdl-map-cta" href="https://sdl-map.discoverylabs.nl/" target="_blank" rel="noopener">Explore the global SDL landscape map &rarr;</a>
                 </div>
             </section>
 
