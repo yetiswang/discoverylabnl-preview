@@ -1675,8 +1675,7 @@
         .hero-slide > .hero-continue,
         .hero-slide > .hero-back,
         .hero-slide > .hero-nav-row { margin-top: 1.5rem; }
-        /* Hide the floating right-side section-nav: in-slide Continue/Back covers it */
-        .section-nav { display: none !important; }
+        /* Floating right-side section-nav restored. */
         .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
         /* Push the Continue button (and the slide-2 back link) to the bottom of the viewport so the slide reads as a clean unit */
         .hero-continue, .hero-back { margin-top: auto; }
@@ -1795,11 +1794,11 @@
         }
         .hero-nav-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            gap: 1rem;
-            margin-top: auto;
-            padding-top: 1rem;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+            padding-top: 0.5rem;
             flex-wrap: wrap;
         }
         .hero-nav-row .hero-back,
