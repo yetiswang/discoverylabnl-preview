@@ -1658,7 +1658,7 @@
         /* Two slides stacked vertically inside the hero; each fills exactly one viewport, content flows from top, footer stuck to bottom */
         #dlnl-claim { min-height: auto; padding: 0; display: block; }
         .hero-slide {
-            min-height: calc(100vh - var(--banner-height));
+            min-height: 100vh;
             padding: 4rem 4rem 3rem;
             display: flex;
             flex-direction: column;
@@ -1767,19 +1767,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 0;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0.25rem auto 0;
         }
         .methodology-svg-wrap svg {
             display: block;
-            width: auto;
+            width: 100%;
+            max-width: 520px;
             height: auto;
-            max-height: 34vh;
-            max-width: 100%;
         }
         @media (max-width: 900px) {
             .hero-slide-methodology { padding: 1.75rem 1.5rem !important; }
-            .methodology-svg-wrap svg { max-height: 30vh; }
+            .methodology-svg-wrap svg { max-width: 380px; }
         }
         .hero-nav-row {
             display: flex;
@@ -1944,12 +1943,9 @@
     <style>
         :root { --banner-height: 2.4rem; }
         @media (max-width: 720px) { :root { --banner-height: 2.6rem; } #preview-banner { font-size: 0.68rem; } }
-        body { padding-top: var(--banner-height); }
+        /* Banner truly floats: no body padding-top, content scrolls behind it. Only the top ~38px of every viewport has the banner overlay. */
         html { scroll-padding-top: var(--banner-height); }
-        /* Sections inherit min-height: 100vh from the base section rule; compensate for the banner so they actually fit one viewport. */
-        body section { min-height: calc(100vh - var(--banner-height)); }
-        /* The landing section sets its own min-height (85vh) and is handled there. */
-        body #landing { min-height: calc(100vh - var(--banner-height)); }
+        /* Sections retain their natural min-height: 100vh from the base section rule. */
     </style>
 
     <!-- Scroll progress bar -->
