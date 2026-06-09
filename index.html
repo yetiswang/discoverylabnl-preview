@@ -450,7 +450,7 @@
         #landing {
             background: linear-gradient(135deg, var(--inverse-bg) 0%, var(--inverse-bg-deep) 60%, #12060a 100%);
             color: white; position: relative; overflow: hidden;
-            padding: 3.5rem 4rem; min-height: 85vh;
+            padding: 3.5rem 4rem; min-height: 100vh;
             display: flex; flex-direction: column; justify-content: center;
             align-items: flex-start;
         }
@@ -1659,11 +1659,14 @@
         #dlnl-claim { min-height: auto; padding: 0; display: block; }
         .hero-slide {
             min-height: 100vh;
-            padding: 4rem 4rem 3rem;
+            padding: 2.5rem 4rem 1.75rem;
             display: flex;
             flex-direction: column;
             scroll-margin-top: var(--banner-height);
         }
+        .hero-slide .challenge-text { margin-bottom: 1rem; }
+        .hero-slide h2 { margin-bottom: 1rem; }
+        .hero-slide-label { margin-bottom: 0.75rem; }
         .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
         /* Push the Continue button (and the slide-2 back link) to the bottom of the viewport so the slide reads as a clean unit */
         .hero-continue, .hero-back { margin-top: auto; }
