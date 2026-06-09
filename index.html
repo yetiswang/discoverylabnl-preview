@@ -1655,48 +1655,17 @@
             color: var(--tue-gray);
         }
         #dlnl-claim .challenge-text strong { font-weight: 700; color: var(--tue-dark); }
-        /* Two-slide carousel inside the hero */
-        .hero-slides { position: relative; }
-        .hero-slide { display: none; animation: heroFade 0.4s ease both; }
-        .hero-slide.active { display: block; }
-        @keyframes heroFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        .hero-slide-nav {
-            display: flex; align-items: center; justify-content: center;
-            gap: 1.25rem; margin-top: 2.5rem;
+        /* Two slides stacked vertically inside the hero; each fills one viewport */
+        #dlnl-claim { min-height: auto; padding: 0; display: block; }
+        .hero-slide {
+            min-height: calc(100vh - var(--banner-height));
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            scroll-margin-top: var(--banner-height);
         }
-        .hero-prev, .hero-next {
-            background: transparent;
-            border: 1px solid var(--tue-light-border);
-            color: var(--tue-dark);
-            font-size: 1.4rem; line-height: 1;
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-            font-family: 'Avenir Next LT Pro', sans-serif;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .hero-prev:hover:not(:disabled), .hero-next:hover:not(:disabled) {
-            background: var(--tue-red); color: white; border-color: var(--tue-red);
-        }
-        .hero-prev:disabled, .hero-next:disabled { opacity: 0.3; cursor: not-allowed; }
-        .hero-slide-dots { display: flex; gap: 0.5rem; align-items: center; }
-        .hero-slide-dots .dot {
-            background: transparent;
-            border: 1px solid var(--tue-light-border);
-            width: 34px; height: 34px;
-            border-radius: 50%;
-            color: var(--tue-gray);
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Avenir Next LT Pro', sans-serif;
-        }
-        .hero-slide-dots .dot.active {
-            background: var(--tue-red); color: white; border-color: var(--tue-red);
-        }
+        .hero-slide-2 { border-top: 1px solid var(--tue-light-border); }
         .hero-slide-label {
             text-transform: uppercase;
             letter-spacing: 0.14em;
@@ -1704,6 +1673,36 @@
             color: var(--tue-red);
             font-weight: 700;
             margin-bottom: 0.75rem;
+        }
+        .hero-continue {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        .hero-continue a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.4rem;
+            background: transparent;
+            border: 1px solid var(--tue-light-border);
+            border-radius: 9999px;
+            color: var(--tue-dark);
+            text-decoration: none;
+            font-size: 0.82rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+        .hero-continue a:hover {
+            background: var(--tue-red);
+            color: white;
+            border-color: var(--tue-red);
+        }
+        @media (max-width: 720px) {
+            .hero-slide { padding: 3rem 1.5rem; }
         }
 
         /* ---------- Revolution (4-card grid) ---------- */
@@ -1964,61 +1963,28 @@
             </section>
             <div class="landing-scroll">&darr; Scroll to explore</div>
 
-            <!-- 2. The DLNL Claim (Hero, two-slide carousel) -->
+            <!-- 2. The DLNL Claim (Hero, two slides stacked vertically) -->
             <section id="dlnl-claim">
-                <h2 class="reveal">From Atom to Function: designing what materials do, not only what they are.</h2>
-                <div class="hero-slides">
-                    <div class="hero-slide hero-slide-1 active" data-slide="1">
-                        <p class="hero-slide-label">Slide 1 of 2 &middot; The core argument</p>
-                        <p class="challenge-text">Artificial intelligence and high-throughput laboratory automation have the potential to fundamentally transform materials and molecular research, accelerating the optimisation of desired properties, uncovering unique parameter sets, and enabling the design of materials with unprecedented features.</p>
-                        <p class="challenge-text"><strong>DiscoveryLabNL closes the knowledge chain from atom to function.</strong> It extends a Dutch lineage that runs from the NWO Gravitation Programme Interactive Polymer Materials (2021) and the National Growth Fund Big Chemistry initiative (2021) into the next decade's open question: how to design what materials do, not only what they are. Universal AI has industrialised structure prediction for stable crystalline inorganic materials, proving what closed-loop infrastructure can deliver in one slice of materials science. DiscoveryLabNL extends that paradigm to the classes that drive the next decade (soft, hybrid, hierarchical, and far-from-equilibrium), where <strong>function</strong> emerges through dynamics and across length scales no first-principles model can simulate to ground truth and no universal AI can yet reach.</p>
-                        <p class="challenge-text">DiscoveryLabNL is the federated national infrastructure that answers it. The <strong>AI Core</strong> proposes candidate designs grounded in <strong>quantum-physics-informed digital twins</strong>, <strong>Self-Driving Labs</strong> synthesise and execute the experiments at scale, and <strong>Advanced Multimodal Characterisation</strong> verifies what computation cannot reach. <strong>Interactive polymers, designer catalysts, programmable mechanical matter, and optoelectronic substrates are four candidate demonstrators</strong>, each a domain where Dutch science already leads the world. Five years ago, designing for function was guesswork; five years from now, with DiscoveryLabNL, it becomes a closed loop.</p>
+                <div class="hero-slide hero-slide-1" id="dlnl-claim-slide-1">
+                    <h2 class="reveal">From Atom to Function: designing what materials do, not only what they are.</h2>
+                    <p class="hero-slide-label">Slide 1 of 2 &middot; The core argument</p>
+                    <p class="challenge-text">Artificial intelligence and high-throughput laboratory automation have the potential to fundamentally transform materials and molecular research, accelerating the optimisation of desired properties, uncovering unique parameter sets, and enabling the design of materials with unprecedented features.</p>
+                    <p class="challenge-text"><strong>DiscoveryLabNL closes the knowledge chain from atom to function.</strong> It extends a Dutch lineage that runs from the NWO Gravitation Programme Interactive Polymer Materials (2021) and the National Growth Fund Big Chemistry initiative (2021) into the next decade's open question: how to design what materials do, not only what they are. Universal AI has industrialised structure prediction for stable crystalline inorganic materials, proving what closed-loop infrastructure can deliver in one slice of materials science. DiscoveryLabNL extends that paradigm to the classes that drive the next decade (soft, hybrid, hierarchical, and far-from-equilibrium), where <strong>function</strong> emerges through dynamics and across length scales no first-principles model can simulate to ground truth and no universal AI can yet reach.</p>
+                    <p class="challenge-text">DiscoveryLabNL is the federated national infrastructure that answers it. The <strong>AI Core</strong> proposes candidate designs grounded in <strong>quantum-physics-informed digital twins</strong>, <strong>Self-Driving Labs</strong> synthesise and execute the experiments at scale, and <strong>Advanced Multimodal Characterisation</strong> verifies what computation cannot reach. <strong>Interactive polymers, designer catalysts, programmable mechanical matter, and optoelectronic substrates are four candidate demonstrators</strong>, each a domain where Dutch science already leads the world. Five years ago, designing for function was guesswork; five years from now, with DiscoveryLabNL, it becomes a closed loop.</p>
+                    <div class="challenge-callout reveal">
+                        <p>DiscoveryLabNL is a joint DIFFER &times; TU/e initiative: a shared infrastructure for autonomous materials discovery, integrating self-driving laboratories, advanced multimodal characterisation, and an AI Core to accelerate the design, synthesis, and validation of next-generation materials.</p>
                     </div>
-                    <div class="hero-slide hero-slide-2" data-slide="2">
-                        <p class="hero-slide-label">Slide 2 of 2 &middot; The challenge and our infrastructure</p>
-                        <p class="challenge-text">This potential is widely recognised across the broader materials community, yet has also produced fragmentation: parallel, disconnected efforts that fall short of the systemic integration needed to realise AI's full scientific impact.</p>
-                        <div class="challenge-callout reveal">
-                            <p>DiscoveryLabNL is a joint DIFFER &times; TU/e initiative: a shared infrastructure for autonomous materials discovery, integrating self-driving laboratories, advanced multimodal characterisation, and an AI Core to accelerate the design, synthesis, and validation of next-generation materials.</p>
-                        </div>
-                        <p class="challenge-text">DIFFER and TU/e together hold nationally recognised SDL foundations: DIFFER's autonomous energy-materials discovery capacity led by Suleyman Er underpins the LSRI Materials group pathway, and TU/e's ICMS contributes SDL platforms developed through the NWO Gravitation Programme Interactive Polymer Materials (IPM) and the National Growth Fund programme Big Chemistry, establishing a proven joint platform for this next step.</p>
-                        <p class="challenge-text">DiscoveryLabNL is the <strong>augmented lab</strong>: one infrastructure, one scientific argument, four candidate demonstrators, and the Dutch interface for the global materials genome. Every FAIR multimodal verification lowers the cost of the next discovery. The alternative is <strong>fragmented, hollow labs that do not compound</strong>.</p>
-                        <p class="challenge-text">The stakes extend well beyond the laboratory. The energy transition, the shift toward circular material flows, and the search for sustainable alternatives to critical raw materials are all bottlenecked by the pace of materials discovery. These are not problems that incremental experimentation can solve at the speed society requires. Infrastructure that systematically accelerates the design, synthesis, and validation of new materials is no longer a competitive advantage; it is a societal necessity.</p>
+                    <div class="hero-continue">
+                        <a href="#dlnl-claim-slide-2" aria-label="Continue to slide 2">Continue to slide 2 &darr;</a>
                     </div>
                 </div>
-                <div class="hero-slide-nav" role="tablist" aria-label="Hero slides">
-                    <button class="hero-prev" aria-label="Previous slide">&lsaquo;</button>
-                    <div class="hero-slide-dots">
-                        <button class="dot active" data-slide="1" aria-label="Slide 1">1</button>
-                        <button class="dot" data-slide="2" aria-label="Slide 2">2</button>
-                    </div>
-                    <button class="hero-next" aria-label="Next slide">&rsaquo;</button>
+                <div class="hero-slide hero-slide-2" id="dlnl-claim-slide-2">
+                    <p class="hero-slide-label">Slide 2 of 2 &middot; The challenge and our infrastructure</p>
+                    <p class="challenge-text">This potential is widely recognised across the broader materials community, yet has also produced fragmentation: parallel, disconnected efforts that fall short of the systemic integration needed to realise AI's full scientific impact.</p>
+                    <p class="challenge-text">DIFFER and TU/e together hold nationally recognised SDL foundations: DIFFER's autonomous energy-materials discovery capacity led by Suleyman Er underpins the LSRI Materials group pathway, and TU/e's ICMS contributes SDL platforms developed through the NWO Gravitation Programme Interactive Polymer Materials (IPM) and the National Growth Fund programme Big Chemistry, establishing a proven joint platform for this next step.</p>
+                    <p class="challenge-text">DiscoveryLabNL is the <strong>augmented lab</strong>: one infrastructure, one scientific argument, four candidate demonstrators, and the Dutch interface for the global materials genome. Every FAIR multimodal verification lowers the cost of the next discovery. The alternative is <strong>fragmented, hollow labs that do not compound</strong>.</p>
+                    <p class="challenge-text">The stakes extend well beyond the laboratory. The energy transition, the shift toward circular material flows, and the search for sustainable alternatives to critical raw materials are all bottlenecked by the pace of materials discovery. These are not problems that incremental experimentation can solve at the speed society requires. Infrastructure that systematically accelerates the design, synthesis, and validation of new materials is no longer a competitive advantage; it is a societal necessity.</p>
                 </div>
-                <script>
-                (function () {
-                    var section = document.getElementById('dlnl-claim');
-                    if (!section) return;
-                    var slides = section.querySelectorAll('.hero-slide');
-                    var dots = section.querySelectorAll('.hero-slide-dots .dot');
-                    var prev = section.querySelector('.hero-prev');
-                    var next = section.querySelector('.hero-next');
-                    var current = 0;
-                    function show(i) {
-                        slides.forEach(function (s, idx) { s.classList.toggle('active', idx === i); });
-                        dots.forEach(function (d, idx) { d.classList.toggle('active', idx === i); });
-                        if (prev) prev.disabled = (i === 0);
-                        if (next) next.disabled = (i === slides.length - 1);
-                        current = i;
-                    }
-                    if (prev) prev.addEventListener('click', function () { show(Math.max(0, current - 1)); });
-                    if (next) next.addEventListener('click', function () { show(Math.min(slides.length - 1, current + 1)); });
-                    dots.forEach(function (d, idx) { d.addEventListener('click', function () { show(idx); }); });
-                    section.addEventListener('keydown', function (e) {
-                        if (e.key === 'ArrowLeft') show(Math.max(0, current - 1));
-                        if (e.key === 'ArrowRight') show(Math.min(slides.length - 1, current + 1));
-                    });
-                    show(0);
-                })();
-                </script>
             </section>
 
             <!-- 3. The World Today -->
