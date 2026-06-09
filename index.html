@@ -450,7 +450,7 @@
         #landing {
             background: linear-gradient(135deg, var(--inverse-bg) 0%, var(--inverse-bg-deep) 60%, #12060a 100%);
             color: white; position: relative; overflow: hidden;
-            padding: 6rem 4rem; min-height: 100vh;
+            padding: 3.5rem 4rem; min-height: 85vh;
             display: flex; flex-direction: column; justify-content: center;
             align-items: flex-start;
         }
@@ -1537,38 +1537,202 @@
         .static-mode .scroll-indicator { display: none; }
         .static-mode .animated-rings * { animation: none !important; }
 
-        /* ---------- World Today (3-card grid) ---------- */
-        #world-today { padding: 5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
-        #world-today h2 { font-family: 'AvenirNextLTPro', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 2.5rem; color: var(--ink, #1a1a1a); }
-        .world-today-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .world-today-card { padding: 1.5rem 0; }
-        .world-today-card h3 { font-family: 'AvenirNextLTPro', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.9rem; color: var(--accent, #C8102E); line-height: 1.35; }
-        .world-today-card p { font-size: 1rem; line-height: 1.6; color: var(--ink, #1a1a1a); }
-        .world-today-card strong { font-weight: 700; }
+        /* =========================================================
+           NEW SECTIONS — World Today, DLNL Claim, Revolution
+           Theme-aware via semantic tokens (--tue-dark / --tue-red / --bg / --tue-light-border).
+           Section min-heights relaxed so Hero + World Today read as one first impression.
+           ========================================================= */
+
+        /* ---------- World Today (3 cards + SDL map) ---------- */
+        #world-today {
+            padding: 3rem 1.5rem 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: auto;
+            display: block;
+        }
+        #world-today h2 {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            margin-bottom: 1.5rem;
+            color: var(--tue-dark);
+            line-height: 1.2;
+        }
+        .world-today-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .world-today-card {
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--tue-light-border);
+            border-radius: 6px;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+        .world-today-card h3 {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-weight: 700;
+            font-size: 0.98rem;
+            margin-bottom: 0.7rem;
+            color: var(--tue-red);
+            line-height: 1.3;
+        }
+        .world-today-card p {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--tue-dark);
+        }
+        .world-today-card strong { font-weight: 700; color: var(--tue-dark); }
         .world-today-card em { font-style: italic; }
 
+        /* SDL map embed inside World Today */
+        .sdl-map-block {
+            margin-top: 1.75rem;
+            padding: 1.25rem;
+            border: 1px solid var(--tue-light-border);
+            border-radius: 6px;
+            background: var(--surface);
+        }
+        .sdl-map-block .sdl-map-eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.72rem;
+            color: var(--tue-red);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+        .sdl-map-block h3 {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem;
+            color: var(--tue-dark);
+        }
+        .sdl-map-block p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--tue-dark);
+            margin-bottom: 0.8rem;
+        }
+        .sdl-map-iframe {
+            width: 100%;
+            height: 420px;
+            border: 1px solid var(--tue-light-border);
+            border-radius: 4px;
+            background: var(--bg);
+        }
+        .sdl-map-cta {
+            display: inline-block;
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+            color: var(--tue-red);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--tue-red);
+            padding-bottom: 2px;
+        }
+
         /* ---------- DLNL Claim (hero paragraph section) ---------- */
-        #dlnl-claim { padding: 5rem 1.5rem; max-width: 880px; margin: 0 auto; }
-        #dlnl-claim h2 { font-family: 'AvenirNextLTPro', sans-serif; font-weight: 700; font-size: clamp(2rem, 4.2vw, 3rem); margin-bottom: 2rem; color: var(--ink, #1a1a1a); line-height: 1.2; }
-        #dlnl-claim .challenge-text { font-size: 1.05rem; line-height: 1.7; }
-        #dlnl-claim .challenge-text strong { font-weight: 700; }
+        #dlnl-claim {
+            padding: 4rem 1.5rem;
+            max-width: 860px;
+            margin: 0 auto;
+            min-height: auto;
+            display: block;
+        }
+        #dlnl-claim h2 {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--tue-dark);
+            line-height: 1.2;
+        }
+        #dlnl-claim .challenge-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--tue-dark);
+        }
+        #dlnl-claim .challenge-text strong { font-weight: 700; color: var(--tue-dark); }
 
-        /* ---------- Revolution (frontier cards) ---------- */
-        #revolution { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
-        #revolution h2 { font-family: 'AvenirNextLTPro', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 0.6rem; color: var(--ink, #1a1a1a); }
-        #revolution .section-eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.85rem; color: var(--accent, #C8102E); margin-bottom: 2.5rem; }
-        .frontier-card { padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 1.5rem; }
-        .frontier-card:first-of-type { border-top: none; padding-top: 0; }
-        .frontier-domain { text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.8rem; color: var(--accent, #C8102E); margin-bottom: 0.6rem; font-weight: 700; }
-        .frontier-headline { font-family: 'AvenirNextLTPro', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.2vw, 1.8rem); margin-bottom: 1rem; color: var(--ink, #1a1a1a); line-height: 1.3; }
-        .frontier-vision { font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.55; }
-        .frontier-vision em { font-style: italic; color: var(--ink, #1a1a1a); }
-        .frontier-card p { font-size: 1rem; line-height: 1.65; margin-bottom: 0.8rem; }
-        .frontier-anchor { font-size: 0.95rem; opacity: 0.85; padding-top: 0.6rem; border-top: 1px dashed rgba(0,0,0,0.12); margin-top: 0.6rem; }
-        .frontier-anchor em { font-style: italic; font-weight: 700; }
+        /* ---------- Revolution (4-card grid) ---------- */
+        #revolution {
+            padding: 3rem 1.5rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: auto;
+            display: block;
+        }
+        #revolution h2 {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+            margin-bottom: 0.4rem;
+            color: var(--tue-dark);
+            line-height: 1.2;
+        }
+        #revolution .section-eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.78rem;
+            color: var(--tue-red);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .frontier-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+        .frontier-card {
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--tue-light-border);
+            border-radius: 6px;
+            transition: border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .frontier-card:hover { border-color: var(--tue-red); }
+        .frontier-domain {
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.7rem;
+            color: var(--tue-red);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .frontier-headline {
+            font-family: 'Avenir Next LT Pro', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            color: var(--tue-dark);
+            line-height: 1.3;
+        }
+        .frontier-vision {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--tue-dark);
+            margin-bottom: 0;
+        }
+        .frontier-vision em { font-style: italic; color: var(--tue-dark); }
+        .frontier-vision strong { font-weight: 700; color: var(--tue-red); }
 
-        @media (max-width: 720px) {
-            .world-today-grid { grid-template-columns: 1fr; gap: 1rem; }
+        @media (max-width: 1024px) {
+            .world-today-grid { grid-template-columns: 1fr 1fr; }
+            .world-today-card:last-child { grid-column: 1 / -1; }
+            .frontier-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 640px) {
+            .world-today-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+            .world-today-card:last-child { grid-column: auto; }
+            .frontier-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+            .sdl-map-iframe { height: 360px; }
         }
 
     </style>
@@ -1748,8 +1912,16 @@
                     </div>
                     <div class="world-today-card reveal">
                         <h3>The window is European, and it is now.</h3>
-                        <p>The Draghi report named the gap. The Critical Raw Materials Act named the consequence. And the European Commission's forthcoming <strong>Advanced Materials Act</strong> names the response: <em>&ldquo;intentionally designed and engineered materials with innovative properties and functionalities&rdquo;</em> (Commission public consultation, Oct 2025). That is the EU defining the function-prediction question in its own words and committing a strategic framework to it. The energy transition will not wait for slow discovery cycles, and Europe will not catch up by importing the breakthroughs other regions are already racing to make. The Netherlands holds the strongest concentration of soft-matter, catalysis, mechanical, and optoelectronic groups on the continent, with industrial gravity from Brainport, the PhotonDelta photonics network, DIFFER's 2026 digitalisation programme, and the energy-transition consortia. The LSRI 2027 cycle is the moment to act.</p>
+                        <p>The Draghi report named the gap. The Critical Raw Materials Act named the consequence. The forthcoming <strong>Advanced Materials Act</strong> names the response: <em>&ldquo;intentionally designed and engineered materials with innovative properties and functionalities&rdquo;</em> (EC consultation, Oct 2025). The Netherlands holds the strongest concentration of soft-matter, catalysis, mechanical, and optoelectronic groups on the continent, with industrial gravity from Brainport, PhotonDelta, DIFFER's 2026 digitalisation programme, and the energy-transition consortia. The LSRI 2027 cycle is the moment to act.</p>
                     </div>
+                </div>
+
+                <div class="sdl-map-block reveal">
+                    <p class="sdl-map-eyebrow">The Dutch SDL landscape, today</p>
+                    <h3>Where the Netherlands already builds self-driving laboratories.</h3>
+                    <p>Existing Dutch SDL nodes, characterisation facilities, and AI-for-materials groups across institutions. DiscoveryLabNL federates these into a single orchestrated infrastructure rather than a parallel one.</p>
+                    <iframe class="sdl-map-iframe" src="https://sdl-map.discoverylabs.nl/" title="Dutch SDL landscape map" loading="lazy"></iframe>
+                    <a class="sdl-map-cta" href="https://sdl-map.discoverylabs.nl/" target="_blank" rel="noopener">Open the SDL landscape map &rarr;</a>
                 </div>
             </section>
 
@@ -1768,36 +1940,30 @@
                 <h2 class="reveal">The Revolution We Enable</h2>
                 <p class="section-eyebrow reveal">Four Frontiers, One Architecture</p>
 
-                <div class="frontier-card reveal">
-                    <p class="frontier-domain">Frontier A &mdash; Interactive polymers</p>
-                    <h3 class="frontier-headline">From substrates to systems.</h3>
-                    <p class="frontier-vision"><strong>By 2035:</strong> <em>Designing a polymer that senses, actuates, reconfigures, and computes is a five-year programme, not a career.</em></p>
-                    <p>For a century, polymer science has produced ever-better substrates: stronger fibres, tougher films, more conductive plastics. The next century will produce polymer systems whose function emerges in the material itself, a coating that learns to repair damage, a hydrogel that adapts to its environment over hours, a fibre that responds and remembers. DiscoveryLabNL closes the design cycle from a decade to a season.</p>
-                    <p class="frontier-anchor"><em>Dutch anchor:</em> the world's strongest concentration of supramolecular and soft-matter chemistry, anchored by TU/e ICMS (Supramolecular Polymer Chemistry, Supramolecular Chemistry &amp; Catalysis, Self-Organizing Soft Matter), with partners across the Dutch chemistry community.</p>
-                </div>
+                <div class="frontier-grid">
+                    <div class="frontier-card reveal">
+                        <p class="frontier-domain">Frontier A</p>
+                        <h3 class="frontier-headline">Interactive polymers</h3>
+                        <p class="frontier-vision"><strong>By 2035:</strong> <em>Designing a polymer that senses, actuates, reconfigures, and computes is a five-year programme, not a career.</em></p>
+                    </div>
 
-                <div class="frontier-card reveal">
-                    <p class="frontier-domain">Frontier B &mdash; Designer catalysts and energy materials</p>
-                    <h3 class="frontier-headline">Catalysts on demand. Independence from rare metals.</h3>
-                    <p class="frontier-vision"><strong>By 2035:</strong> <em>Finding a catalyst for a target transformation is a design problem, not a discovery problem, and Europe does not depend on critical raw materials to do it.</em></p>
-                    <p>The energy transition will not wait for the 15-year catalyst-discovery cycles that defined the last century. The breakthroughs the Netherlands and Europe need (CO2 to chemistry at room temperature, ammonia synthesis at ambient pressure, water splitting without iridium) are not yet known, but the architecture to find them is. DiscoveryLabNL collapses their cycle from years to months and removes critical-raw-material dependencies.</p>
-                    <p class="frontier-anchor"><em>Dutch anchor:</em> DIFFER (Chemical Energy department, 2026 institute-wide digitalisation + AI programme), the Utrecht catalysis school (Weckhuysen), TU/e EIRES (cross-departmental energy institute), and the broader Dutch electrochemistry and operando-characterisation community.</p>
-                </div>
+                    <div class="frontier-card reveal">
+                        <p class="frontier-domain">Frontier B</p>
+                        <h3 class="frontier-headline">Designer catalysts and energy materials</h3>
+                        <p class="frontier-vision"><strong>By 2035:</strong> <em>Finding a catalyst for a target transformation is a design problem, not a discovery problem, and Europe does not depend on critical raw materials to do it.</em></p>
+                    </div>
 
-                <div class="frontier-card reveal">
-                    <p class="frontier-domain">Frontier C &mdash; Programmable mechanical matter</p>
-                    <h3 class="frontier-headline">Geometry as a design variable.</h3>
-                    <p class="frontier-vision"><strong>By 2035:</strong> <em>Mechanical, acoustic, and thermal properties of materials are designed by architecture across six orders of magnitude in length scale, decoupled from chemistry.</em></p>
-                    <p>Bone, nacre, dragline silk, and plant cell walls have always shown that hierarchical architecture produces properties chemistry alone cannot. The next decade brings that capability into engineering: crash-safe lightweight transport materials, vibration-tuned aerospace components, self-healing infrastructure, mechanical metamaterials with on-demand stiffness. DiscoveryLabNL spans the length scales current AI models cannot bridge alone.</p>
-                    <p class="frontier-anchor"><em>Dutch anchor:</em> TU/e Mechanics of Materials (Geers, KNAW member), TU Delft mechanical metamaterials, and the 4TU Dynamical Metamaterials community.</p>
-                </div>
+                    <div class="frontier-card reveal">
+                        <p class="frontier-domain">Frontier C</p>
+                        <h3 class="frontier-headline">Programmable mechanical matter</h3>
+                        <p class="frontier-vision"><strong>By 2035:</strong> <em>Mechanical, acoustic, and thermal properties are designed by architecture across six orders of magnitude in length scale, decoupled from chemistry.</em></p>
+                    </div>
 
-                <div class="frontier-card reveal">
-                    <p class="frontier-domain">Frontier D &mdash; Optoelectronic substrates</p>
-                    <h3 class="frontier-headline">The materials beneath the next computing era.</h3>
-                    <p class="frontier-vision"><strong>By 2035:</strong> <em>The materials of the post-silicon era are discovered by design, not by serendipity, in the Netherlands.</em></p>
-                    <p>Brainport's hardware dominance is durable only if the materials-discovery layer beneath it is. Photonic, topological, neuromorphic, and disordered-semiconductor substrates for the next generation of computing, sensing, and energy harvesting are not yet known but are racing to be claimed elsewhere. DiscoveryLabNL collapses their discovery cycles from a postdoc career to a measurement campaign.</p>
-                    <p class="frontier-anchor"><em>Dutch anchor:</em> TU/e Applied Physics (M2N organic photovoltaics, M2D optoelectronic devices, organic-semiconductor theory at Coehoorn / Bobbert), the PhotonDelta integrated-photonics ecosystem (150 companies, including ASML, BESI, NXP, SMART Photonics), and the broader Dutch optoelectronics community.</p>
+                    <div class="frontier-card reveal">
+                        <p class="frontier-domain">Frontier D</p>
+                        <h3 class="frontier-headline">Optoelectronic substrates</h3>
+                        <p class="frontier-vision"><strong>By 2035:</strong> <em>The materials of the post-silicon era are discovered by design, not by serendipity, in the Netherlands.</em></p>
+                    </div>
                 </div>
             </section>
 
