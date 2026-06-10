@@ -1980,6 +1980,47 @@
             color: var(--tue-dark);
         }
 
+        /* Page-number indicator (fixed bottom-right) */
+        .page-indicator {
+            position: fixed;
+            right: 1.4rem;
+            bottom: 1.4rem;
+            z-index: 9000;
+            font-family: inherit;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            font-weight: 600;
+            color: var(--tue-dark);
+            background: rgba(255,255,255,0.92);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            user-select: none;
+            transition: opacity 0.25s ease;
+        }
+        .page-indicator .pi-current {
+            color: var(--tue-red);
+        }
+        .page-indicator .pi-sep {
+            opacity: 0.4;
+            margin: 0 0.25rem;
+        }
+        .page-indicator .pi-total {
+            opacity: 0.65;
+        }
+        @media (max-width: 640px) {
+            .page-indicator {
+                right: 0.8rem;
+                bottom: 0.8rem;
+                font-size: 0.7rem;
+                padding: 0.35rem 0.7rem;
+            }
+        }
+        @media print {
+            .page-indicator { display: none; }
+        }
+
         @media (max-width: 1024px) {
             .world-today-grid { grid-template-columns: 1fr 1fr; }
             .world-today-card:last-child { grid-column: 1 / -1; }
@@ -2065,6 +2106,11 @@
                 </ul>
             </nav>
         </aside>
+
+        <!-- Page-number indicator -->
+        <div class="page-indicator" id="page-indicator" aria-live="polite" aria-atomic="true">
+            <span class="pi-current" id="pi-current">01</span><span class="pi-sep">/</span><span class="pi-total" id="pi-total">15</span>
+        </div>
 
         <!-- Main content -->
         <main class="content" id="content">
@@ -4534,10 +4580,22 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
             }
         }
 
+        // Page-number indicator (bottom-right)
+        const piCurrent = document.getElementById('pi-current');
+        const piTotal = document.getElementById('pi-total');
+        if (piTotal) {
+            piTotal.textContent = String(navSections.length).padStart(2, '0');
+        }
+        function updatePageIndicator(idx) {
+            if (!piCurrent) return;
+            piCurrent.textContent = String(idx + 1).padStart(2, '0');
+        }
+
         function updateSectionNavState() {
             const idx = getCurrentSectionIndex();
             prevBtn.disabled = idx === 0;
             nextBtn.disabled = idx >= navSections.length - 1;
+            updatePageIndicator(idx);
         }
 
         prevBtn.addEventListener('click', () => {
