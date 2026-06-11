@@ -1987,15 +1987,16 @@
         }
         /* On the methodology slide the nav row sits at full slide width with buttons pinned to left and right edges,
            so the centered pull quote above stays readable underneath the sticky bar. */
-        #dlnl-claim-slide-2 > .hero-nav-row { align-self: stretch !important; }
+        #dlnl-claim-slide-4 > .hero-nav-row { align-self: stretch !important; }
+        /* Default pills: light-slide styling (dark text on light bg) */
         .hero-nav-row .hero-back,
         .hero-nav-row .hero-continue-link {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.7rem 1.4rem;
             background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid var(--tue-light-border);
             border-radius: 9999px;
-            color: rgba(255,255,255,0.85);
+            color: var(--tue-gray);
             text-decoration: none;
             font-size: 0.82rem;
             letter-spacing: 0.14em;
@@ -2007,6 +2008,12 @@
         .hero-nav-row .hero-back:hover,
         .hero-nav-row .hero-continue-link:hover {
             background: var(--tue-red); color: white; border-color: var(--tue-red);
+        }
+        /* Dark methodology slide keeps the white pill variant */
+        .hero-slide-methodology > .hero-nav-row .hero-back,
+        .hero-slide-methodology > .hero-nav-row .hero-continue-link {
+            border-color: rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.85);
         }
         /* Back-to-prev-slide affordance on slide 3 (light slides) */
         .hero-back { display: flex; justify-content: center; padding-top: 2rem; }
