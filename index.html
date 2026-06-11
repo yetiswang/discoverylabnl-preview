@@ -760,15 +760,7 @@
         .team-member { display: flex; align-items: baseline; margin-bottom: 0.75rem; }
         .team-member-name { font-weight: 700; color: var(--tue-dark); margin-right: 0.5rem; }
         .team-member-role { font-size: 0.9rem; color: var(--tue-gray); }
-        .team-bracket { position: relative; padding-left: 1.5rem; margin-left: 1.5rem; }
-        .team-bracket::before {
-            content: ''; position: absolute; left: 0; top: -12px; bottom: -12px;
-            width: 2px; background-color: var(--tue-light-border);
-            border-top: 2px solid var(--tue-light-border);
-            border-bottom: 2px solid var(--tue-light-border);
-            border-left: 2px solid var(--tue-light-border);
-            border-radius: 8px 0 0 8px;
-        }
+        .team-bracket { position: relative; }
 
         /* ============================================ */
         /*  STAKEHOLDER SECTION - Dark map overhaul     */
@@ -3047,7 +3039,7 @@
 
             <section id="campus">
                 <h2 class="reveal">Campus Partners</h2>
-                <p class="campus-intro reveal">DiscoveryLabNL is hosted as a joint initiative between <strong>DIFFER</strong> (NWO) and <strong>TU/e</strong> (ICMS, EIRES, Casimir), with EAISI (Eindhoven AI Systems Institute) providing the AI Core methodological foundation. Scientific leadership: Jan van Hest (Scientific Director &amp; Lead PI, ICMS / TU/e), Suleyman Er (DIFFER), Luc Brunsveld (ICMS / TU/e). Governance: equal partners across the four hosting institutes.</p>
+                <p class="campus-intro reveal">DiscoveryLabNL is hosted as a joint initiative between <strong>DIFFER</strong> (NWO) and <strong>TU/e</strong> (ICMS, EIRES, Casimir), with EAISI (Eindhoven AI Systems Institute) providing the AI Core methodological foundation. Scientific leadership: Jan van Hest (Scientific Director &amp; Lead PI, TU/e), Suleyman Er (DIFFER), Luc Brunsveld (ICMS / TU/e). Governance: equal partners across the four hosting institutes.</p>
                 <div class="consortium-grid reveal-group">
                     <div class="consortium-card">
                         <h3>DIFFER</h3>
@@ -4206,7 +4198,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
             <!-- 5. Positioning -->
             <section id="positioning">
                 <h2 class="reveal">Positioning</h2>
-                <p class="positioning-intro reveal">DiscoveryLabNL is led jointly by DIFFER and TU/e. DIFFER hosts the initiative as an NWO institute and anchors the LSRI Materials group pathway via Suleyman Er. TU/e's ICMS contributes established self-driving lab capacity, campus-wide materials expertise, and national characterisation and digital infrastructure connections, coordinated by Jan van Hest and Luc Brunsveld.</p>
+                <p class="positioning-intro reveal">DiscoveryLabNL is led jointly by DIFFER and TU/e. DIFFER hosts the initiative as an NWO institute and anchors the LSRI Materials group pathway via Suleyman Er. TU/e's ICMS contributes established self-driving lab capacity, campus-wide materials expertise, and national characterisation and digital infrastructure connections, coordinated by Luc Brunsveld; scientific direction across TU/e is led by Jan van Hest.</p>
                 <div class="positioning-grid reveal-group">
                     <div class="position-card position-dark">
                         <h3>Within TU/e</h3>
@@ -4266,7 +4258,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
                     <h3>Core Leadership</h3>
                     <div class="team-member">
                         <span class="team-member-name">Jan van Hest</span>
-                        <span class="team-member-role">Scientific Director &amp; Lead Principal Investigator &mdash; scientific vision and delivery, institutional representation, EB &amp; NWO communications, ICMS / TU/e</span>
+                        <span class="team-member-role">Scientific Director &amp; Lead Principal Investigator &mdash; scientific vision and delivery, institutional representation, EB &amp; NWO communications, TU/e</span>
                     </div>
                     <div class="team-member">
                         <span class="team-member-name">Suleyman Er</span>
@@ -4274,7 +4266,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
                     </div>
                     <div class="team-member">
                         <span class="team-member-name">Luc Brunsveld</span>
-                        <span class="team-member-role">Scientific Lead &mdash; ICMS scientific direction, LSRI submission, ICMS / TU/e</span>
+                        <span class="team-member-role">Scientific Lead &mdash; ICMS scientific direction, ICMS / TU/e</span>
                     </div>
                     <div class="team-member">
                         <span class="team-member-name">Yuyang Wang</span>
@@ -4547,7 +4539,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
 
     <!-- Footer -->
     <footer>
-        <p>March 2026 &middot; DIFFER &middot; ICMS &middot; TU/e &middot; <a href="https://tue-flagship-advanced-materials.nl/" target="_blank" rel="noopener">TU/e Flagship: Advanced Materials</a></p>
+        <p>June 2026 &middot; DIFFER &middot; ICMS &middot; TU/e &middot; <a href="https://tue-flagship-advanced-materials.nl/" target="_blank" rel="noopener">TU/e Flagship: Advanced Materials</a></p>
     </footer>
 
     <!-- Floating section nav (next/prev) -->
@@ -4709,7 +4701,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
         //  Stakeholder data
         // ==========================================
         const stakeholders = {
-            jh: { name: 'Jan van Hest', role: 'Scientific Director & Lead PI, ICMS / TU/e', org: 'ICMS / TU/e', tier: 'core', note: 'Scientific Director and Lead Principal Investigator of DiscoveryLabNL; Dean, Biomedical Engineering, TU/e; founding Scientific Director, ICMS.' },
+            jh: { name: 'Jan van Hest', role: 'Scientific Director & Lead PI, TU/e', org: 'TU/e', tier: 'core', note: 'Scientific Director and Lead Principal Investigator of DiscoveryLabNL; Dean, Biomedical Engineering, TU/e; founding Scientific Director, ICMS.' },
             yw: { name: 'Yuyang Wang', role: 'Initiative Lead', org: 'ICMS / TU/e', tier: 'core', note: 'Initiative lead and programme manager: charter, consortium formation, infrastructure architecture.' },
             mb: { name: 'Monique Bruining', role: 'Initiative Co-lead & Flagship Co-lead', org: 'ICMS / TU/e', tier: 'core', note: 'Initiative co-lead; Managing Director, ICMS; co-lead of the TU/e Materials Flagship.' },
             nt: { name: 'Nicholas Tito', role: 'Flagship Strategy & Operations', org: 'ICMS', tier: 'committed', note: 'Strategy and operations for the TU/e Materials Flagship; alignment with the 10-year Intelligent Materials Labs vision.' },
@@ -4725,7 +4717,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
             se: { name: 'S\u00fcleyman Er', role: 'Scientific Lead, DIFFER', org: 'DIFFER', tier: 'core', note: 'Scientific Lead of DiscoveryLabNL on the DIFFER side; Head of the Chemical Energy department, DIFFER; LSRI Materials group lead pathway; autonomous energy-materials discovery.' },
             st: { name: 'Shuxia Tao', role: 'Department Head', org: 'DIFFER', tier: 'committed', note: 'Computational materials physics at DIFFER; machine learning for energy materials.' },
             eb: { name: 'Erik Bakkers', role: 'Group Leader', org: 'Applied Photonics and Semiconductor Engineering', tier: 'committed', note: 'Quantum and energy materials; semiconductor nanowire devices.' },
-            lb: { name: 'Luc Brunsveld', role: 'Scientific Lead, ICMS / TU/e', org: 'ICMS / TU/e', tier: 'core', note: 'Scientific Lead of DiscoveryLabNL on the TU/e side; Scientific Director, Institute for Complex Molecular Systems (ICMS); LSRI questionnaire main submitter.' },
+            lb: { name: 'Luc Brunsveld', role: 'Scientific Lead, ICMS / TU/e', org: 'ICMS / TU/e', tier: 'core', note: 'Scientific Lead of DiscoveryLabNL on the TU/e side; Scientific Director, Institute for Complex Molecular Systems (ICMS).' },
             tn: { name: 'Timothy No\u00ebl', role: 'Professor, Flow Chemistry', org: 'University of Amsterdam', tier: 'planned', note: 'Professor of Flow Chemistry, UvA (HIMS); continuous-flow photochemistry and SDL.' },
             fs: { name: 'Francesco Staps', role: 'Business Developer', org: 'Big Chemistry', tier: 'dialogue', note: 'Business Developer, Big Chemistry — the national SDL programme hosted at TU/e.' },
             ap: { name: 'Anja Palmans', role: 'Full Professor, Supramolecular Chemistry & Catalysis', org: 'ICMS / TU/e', tier: 'dialogue', note: 'Supramolecular chemistry and single-chain polymeric nanoparticles, ICMS.' },
