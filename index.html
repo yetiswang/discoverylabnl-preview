@@ -157,7 +157,10 @@
 
         /* Reset and base styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+        /* scroll-padding removed: per-element scroll-margins (var(--header-h)) own the
+           anchor offset; a global scroll-padding STACKED with them and every rail jump
+           landed 60px too low ("extra space on top") */
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Avenir Next LT Pro', system-ui, sans-serif;
             color: var(--tue-dark);
@@ -698,6 +701,8 @@
         #campus h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--tue-dark); }
         .campus-intro { font-size: 1.1rem; color: var(--tue-gray); margin-bottom: 2.5rem; line-height: 1.7; }
         .consortium-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        /* Campus Partners: fixed symmetric 2x2 (four hosting institutes) */
+        #campus .consortium-grid { grid-template-columns: repeat(2, 1fr); max-width: 980px; margin-left: auto; margin-right: auto; }
         .consortium-card {
             background: var(--surface); border-left: 4px solid var(--tue-red);
             padding: 1.5rem; border-radius: 2px; box-shadow: 0 2px 8px var(--shadow-soft);
@@ -744,7 +749,11 @@
         /* Landscape */
         #landscape h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--tue-dark); }
         .landscape-intro { font-size: 1rem; color: var(--tue-gray); margin-bottom: 2.5rem; line-height: 1.7; max-width: 820px; }
-        .landscape-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        /* Global Landscape: fixed symmetric 3x2 (six initiatives, DiscoveryLabNL last) */
+        .landscape-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        @media (max-width: 1024px) and (min-width: 641px) {
+            .landscape-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         .landscape-card { background: var(--surface); border: 1px solid var(--tue-light-border); border-radius: 4px; padding: 1.5rem; transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.25s ease; }
         .landscape-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow-soft); }
         .landscape-card h3 { font-size: 1.1rem; color: var(--tue-dark); margin-bottom: 0.3rem; }
@@ -1869,6 +1878,16 @@
             margin-bottom: 0.75rem;
             line-height: 1.2;
         }
+        /* Centered text container on the dark methodology stage */
+        .hero-slide-methodology > .hero-slide-label,
+        .hero-slide-methodology > .methodology-title,
+        .hero-slide-methodology > .methodology-text,
+        .hero-slide-methodology > .methodology-text-secondary {
+            width: 100%;
+            max-width: 880px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .methodology-text {
             font-size: 0.92rem;
             line-height: 1.55;
@@ -2154,6 +2173,12 @@
                         box-shadow 0.3s ease;
         }
         .dlnl-rail__label {
+            /* Absolutely positioned overlay: hidden labels take NO layout space, so the
+               node (and the touch zone) is only as wide as the dot — scroll gestures
+               near the text edge no longer get intercepted */
+            position: absolute;
+            right: 28px;
+            top: 50%;
             font-family: 'Avenir Next LT Pro', 'Avenir Next', sans-serif;
             font-size: 0.72rem;
             letter-spacing: 0.14em;
@@ -2167,7 +2192,7 @@
             border-radius: 3px;
             white-space: nowrap;
             opacity: 0;
-            transform: translateX(10px);
+            transform: translateY(-50%) translateX(10px);
             pointer-events: none;
             transition: opacity 0.3s ease,
                         transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
@@ -2181,7 +2206,7 @@
         .dlnl-rail:hover .dlnl-rail__label,
         .dlnl-rail.touching .dlnl-rail__label {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateY(-50%) translateX(0);
             pointer-events: auto;
         }
         .dlnl-rail:hover .dlnl-rail__node:nth-child(2) .dlnl-rail__label  { transition-delay: 0.00s; }
@@ -2233,7 +2258,8 @@
             text-shadow: 0 0 6px rgba(255, 255, 255, 0.45);
         }
         @media (max-width: 820px) {
-            .dlnl-rail { right: 10px; padding-left: 18px; transition: opacity 0.35s ease; }
+            /* Slim touch zone: dot column + 8px halo only */
+            .dlnl-rail { right: 8px; padding-left: 8px; transition: opacity 0.35s ease; }
             .dlnl-rail__dot { width: 13px; height: 13px; }
             .dlnl-rail__node { padding: 10px 0; }
             .dlnl-rail__label { font-size: 0.7rem; }
@@ -3178,7 +3204,9 @@
                         color: var(--tue-gray);
                         margin-bottom: 1.8rem;
                         line-height: 1.6;
-                        max-width: 820px;
+                        max-width: 72ch;
+                        margin-left: 0;   /* left-align with the section title */
+                        margin-right: auto;
                     }
                     #consortium h2 { margin-bottom: 0.8rem; }
                     #consortium .csm-layout {
@@ -3208,7 +3236,14 @@
                         #consortium .csm-intro { font-size: 1rem; }
                         #consortium { padding: 4rem 1.5rem; }
                     }
-                    #consortium .csm-rings-wrap, #consortium .csm-map-wrap { width: 100%; }
+                    #consortium .csm-rings-wrap, #consortium .csm-map-wrap { width: 100%; min-width: 0; }
+                    /* Narrow-desktop band (941-1300px): height-driven SVG widths overflow the
+                       grid and clip the map at the viewport edge — switch to width-driven sizing */
+                    @media (max-width: 1300px) and (min-width: 941px) {
+                        #consortium .csm-layout { max-height: none; }
+                        #consortium .csm-rings { width: 100%; height: auto; max-height: none; }
+                        #consortium .csm-map   { width: 100%; height: auto; max-height: none; }
+                    }
                     #consortium .csm-rings { width: auto; height: 100%; aspect-ratio: 1.3; max-width: 100%; max-height: calc(100vh - 18rem); margin: 0 auto; overflow: visible; display: block; }
                     #consortium .csm-rings svg { overflow: visible; width: 100%; height: 100%; }
                     #consortium .csm-map { width: auto; height: 100%; aspect-ratio: 0.85; max-width: 100%; max-height: calc(100vh - 18rem); margin: 0 auto; display: block; }
@@ -3890,17 +3925,19 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
 -39 -16 -68 -2 -18 8 -60 37 -94 64 -54 41 -71 49 -122 55 -48 6 -68 14 -101
 41 -38 32 -153 76 -191 74 -8 0 -41 -13 -74 -29z"/>
 </g>
-                            <!-- Eindhoven cluster: 4 TU/e institutes + DIFFER co-located -->
-                            <circle cx="575" cy="680" r="13" class="city-dot-cmp"/>
-                            <text x="592" y="690" text-anchor="start" class="city-label">Eindhoven</text>
-                            
-                            <!-- Delft (TU Delft) -->
-                            <circle cx="375" cy="475" r="11" class="city-dot-tlk"/>
-                            <text x="360" y="465" text-anchor="end" class="city-label city-label-tlk">Delft</text>
-                            
-                            <!-- Nijmegen (Radboud) -->
-                            <circle cx="640" cy="555" r="11" class="city-dot-tlk"/>
-                            <text x="656" y="545" text-anchor="start" class="city-label city-label-tlk">Nijmegen</text>
+                            <!-- City markers: linear lat/lon projection onto the outline bbox
+                                 (x 74-951, y 0-1024 = lon 3.358-7.227E, lat 53.555-50.750N) -->
+                            <!-- Eindhoven cluster: 4 TU/e institutes + DIFFER co-located (51.44N, 5.47E) -->
+                            <circle cx="553" cy="771" r="13" class="city-dot-cmp"/>
+                            <text x="570" y="781" text-anchor="start" class="city-label">Eindhoven</text>
+
+                            <!-- Delft (TU Delft) (52.01N, 4.36E) -->
+                            <circle cx="300" cy="563" r="11" class="city-dot-tlk"/>
+                            <text x="285" y="553" text-anchor="end" class="city-label city-label-tlk">Delft</text>
+
+                            <!-- Nijmegen (Radboud) (51.81N, 5.84E) -->
+                            <circle cx="636" cy="636" r="11" class="city-dot-tlk"/>
+                            <text x="652" y="626" text-anchor="start" class="city-label city-label-tlk">Nijmegen</text>
                             
                         </svg></div>
                         <p class="csm-map-cap">Named NL partners by city.</p>
@@ -4274,7 +4311,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
             <!-- 5. Positioning -->
             <section id="positioning">
                 <h2 class="reveal">Positioning</h2>
-                <p class="positioning-intro reveal">DiscoveryLabNL is led jointly by DIFFER and TU/e. DIFFER hosts the initiative as an NWO institute and anchors the LSRI Materials group pathway via Suleyman Er. TU/e's ICMS contributes established self-driving lab capacity, campus-wide materials expertise, and national characterisation and digital infrastructure connections, coordinated by Luc Brunsveld; scientific direction across TU/e is led by Jan van Hest.</p>
+                <p class="positioning-intro reveal">DiscoveryLabNL is led jointly by DIFFER and TU/e. DIFFER hosts the initiative as an NWO institute and anchors the LSRI Materials group pathway. TU/e's ICMS contributes established self-driving lab capacity, campus-wide materials expertise, and national characterisation and digital infrastructure connections, coordinated by Luc Brunsveld; scientific direction across TU/e is led by Jan van Hest.</p>
                 <div class="positioning-grid reveal-group">
                     <div class="position-card position-dark">
                         <h3>Within TU/e</h3>
