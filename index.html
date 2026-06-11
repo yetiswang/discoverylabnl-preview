@@ -630,7 +630,7 @@
         .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
         .pillar-card {
             background: var(--surface); border: 1px solid var(--tue-light-border);
-            border-radius: 4px; padding: 2rem; transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease, transform 0.3s ease; cursor: pointer;
+            border-radius: 6px; padding: 2rem; transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease, transform 0.3s ease; cursor: pointer;
         }
         .pillar-card:hover { box-shadow: 0 8px 24px var(--shadow-mid); border-color: var(--tue-red); }
         .pillar-card[id] { scroll-margin-top: 100px; }
@@ -643,7 +643,7 @@
         }
         .pillar-ref:hover { border-bottom-style: solid; }
         .pillar-ref:hover strong { color: var(--tue-red); }
-        .pillar-card h3 { font-size: 1.3rem; color: var(--tue-red); margin-bottom: 1rem; font-weight: 700; }
+        .pillar-card h3 { font-size: 1.2rem; color: var(--tue-red); margin-bottom: 1rem; font-weight: 700; }
         .pillar-card p { font-size: 1rem; line-height: 1.7; color: var(--tue-gray); margin-bottom: 1rem; }
         .pillar-expand-btn {
             background: none; border: none; color: var(--tue-red); cursor: pointer;
@@ -704,10 +704,12 @@
         /* Campus Partners: fixed symmetric 2x2 (four hosting institutes) */
         #campus .consortium-grid { grid-template-columns: repeat(2, 1fr); max-width: 980px; margin-left: auto; margin-right: auto; }
         .consortium-card {
-            background: var(--surface); border-left: 4px solid var(--tue-red);
-            padding: 1.5rem; border-radius: 2px; box-shadow: 0 2px 8px var(--shadow-soft);
-            transition: background 0.25s ease;
+            /* Unified card family: thin border + 6px radius (left-accent strip retired) */
+            background: var(--surface); border: 1px solid var(--tue-light-border);
+            padding: 1.5rem; border-radius: 6px; box-shadow: none;
+            transition: background 0.25s ease, border-color 0.25s ease;
         }
+        .consortium-card:hover { border-color: var(--tue-red); }
         .consortium-card h3 { font-size: 1.2rem; color: var(--tue-dark); margin-bottom: 0.5rem; font-weight: 700; }
         .consortium-card p { font-size: 0.95rem; color: var(--tue-gray); line-height: 1.6; }
 
@@ -715,7 +717,7 @@
         #positioning h2 { font-size: 2.5rem; margin-bottom: 2.5rem; color: var(--tue-dark); }
         .positioning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .position-card {
-            background: var(--surface); padding: 2rem; border-radius: 4px; border: 1px solid var(--tue-light-border);
+            background: var(--surface); padding: 2rem; border-radius: 6px; border: 1px solid var(--tue-light-border);
             transition: background 0.25s ease, border-color 0.25s ease;
         }
         .position-card h3 { font-size: 1.2rem; color: var(--tue-red); margin-bottom: 1rem; font-weight: 700; }
@@ -754,10 +756,10 @@
         @media (max-width: 1024px) and (min-width: 641px) {
             .landscape-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        .landscape-card { background: var(--surface); border: 1px solid var(--tue-light-border); border-radius: 4px; padding: 1.5rem; transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.25s ease; }
+        .landscape-card { background: var(--surface); border: 1px solid var(--tue-light-border); border-radius: 6px; padding: 1.5rem; transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.25s ease; }
         .landscape-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow-soft); }
-        .landscape-card h3 { font-size: 1.1rem; color: var(--tue-dark); margin-bottom: 0.3rem; }
-        .landscape-meta { font-size: 0.78rem; color: var(--tue-gray); font-weight: 600; letter-spacing: 0.02em; margin-bottom: 0.75rem; text-transform: uppercase; }
+        .landscape-card h3 { font-size: 1.2rem; color: var(--tue-dark); margin-bottom: 0.3rem; }
+        .landscape-meta { font-size: 0.78rem; color: var(--tue-gray); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 0.75rem; text-transform: uppercase; }
         .landscape-card p:last-child { font-size: 0.9rem; color: var(--tue-gray); line-height: 1.55; margin: 0; }
         .landscape-highlight { background: var(--inverse-bg); border-color: var(--inverse-bg); }
         .landscape-highlight h3 { color: #fff; }
@@ -1608,7 +1610,7 @@
         #world-today h2 {
             font-family: 'Avenir Next LT Pro', sans-serif;
             font-weight: 700;
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-size: clamp(1.7rem, 3.2vw, 2.5rem);  /* unified site-wide h2 scale */
             margin-bottom: 1.5rem;
             color: var(--tue-dark);
             line-height: 1.2;
@@ -1745,7 +1747,7 @@
         #dlnl-claim .challenge-text strong { font-weight: 700; color: var(--tue-dark); }
         /* Two slides stacked vertically inside the hero; each fills exactly one viewport, content flows from top, footer stuck to bottom */
         #dlnl-claim { min-height: auto; padding: 0; display: block; }
-        #dlnl-claim h2 { margin-bottom: 0.6rem !important; font-size: clamp(1.6rem, 3vw, 2.1rem) !important; }
+        #dlnl-claim h2 { margin-bottom: 0.6rem !important; font-size: clamp(1.7rem, 3.2vw, 2.5rem) !important; }  /* unified site-wide h2 scale */
         #dlnl-claim .challenge-callout { margin-top: 0.5rem !important; margin-bottom: 0.75rem !important; padding: 1rem 1.25rem !important; }
         #dlnl-claim .challenge-callout p { font-size: 0.95rem !important; line-height: 1.5 !important; }
         #dlnl-claim .hero-slide-label { margin-bottom: 0.5rem; }
