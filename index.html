@@ -645,10 +645,21 @@
         .pillar-ref:hover strong { color: var(--tue-red); }
         .pillar-card h3 { font-size: 1.2rem; color: var(--tue-red); margin-bottom: 1rem; font-weight: 700; }
         .pillar-card p { font-size: 1rem; line-height: 1.7; color: var(--tue-gray); margin-bottom: 1rem; }
+        /* Tier-2 CTA family, disclosure variant: uppercase + tracking + rotating chevron */
         .pillar-expand-btn {
             background: none; border: none; color: var(--tue-red); cursor: pointer;
-            font-weight: 600; font-size: 0.95rem; padding: 0; transition: color 0.2s ease;
+            font-family: 'Avenir Next LT Pro', 'Avenir Next', sans-serif;
+            font-weight: 700; font-size: 0.72rem; padding: 0;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            transition: color 0.2s ease;
         }
+        .pillar-expand-btn .btn-chevron {
+            display: inline-block;
+            font-size: 0.65rem;
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .pillar-expand-btn.open .btn-chevron { transform: rotate(180deg); }
         .pillar-expand-btn:hover { color: var(--tue-dark); }
         .pillar-expanded { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
         .pillar-expanded.open { max-height: 700px; }
@@ -742,7 +753,7 @@
             width: 32px; height: 32px; margin-top: -4px;
         }
         .phase-marker { font-size: 0.85rem; color: var(--tue-gray); font-weight: 600; margin-bottom: 0.5rem; }
-        .phase-title { font-size: 0.95rem; font-weight: 700; color: var(--tue-dark); margin-bottom: 0.5rem; }
+        .phase-title { font-size: 0.95rem; font-weight: 700; color: var(--tue-dark); margin-bottom: 0.5rem; min-height: 2.6em; /* reserves two title lines so all four phase descriptions start on a shared baseline */ }
         .phase-desc { font-size: 0.85rem; color: var(--tue-gray); line-height: 1.5; }
         .phase-here { font-size: 0.75rem; color: var(--tue-red); font-weight: 700; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
         .roadmap-phase.done .phase-dot { background-color: var(--tue-dark); border-color: var(--tue-dark); }
@@ -765,9 +776,21 @@
         .landscape-highlight h3 { color: #fff; }
         .landscape-highlight .landscape-meta { color: rgba(255,255,255,0.85); }
         .landscape-highlight p:last-child { color: rgba(255,255,255,0.92); }
-        .landscape-cta { margin-top: 2rem; font-size: 0.95rem; color: var(--tue-gray); text-align: center; }
-        .landscape-cta a { color: var(--tue-red); text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--tue-red); padding-bottom: 1px; transition: opacity 0.2s; }
-        .landscape-cta a:hover { opacity: 0.7; }
+        /* Tier-2 standalone CTA (matches .sdl-map-cta treatment) */
+        .landscape-cta { margin-top: 2rem; text-align: center; }
+        .landscape-cta a {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--tue-red);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--tue-red);
+            padding-bottom: 2px;
+            transition: border-bottom-width 0.15s ease, opacity 0.2s ease;
+        }
+        .landscape-cta a:hover { border-bottom-width: 2px; opacity: 0.85; }
         @media (max-width: 768px) {
             .landscape-grid { grid-template-columns: 1fr; }
         }
@@ -1474,6 +1497,7 @@
             .roadmap-line { display: none; }
             .roadmap-phase { text-align: left; display: flex; align-items: flex-start; gap: 1rem; }
             .phase-dot { margin: 0; flex-shrink: 0; }
+            .phase-title { min-height: 0; }  /* vertical list layout: no reserved title space needed */
             .map-container { min-height: 350px; overflow: visible; }
             .detail-panel {
                 position: fixed; top: auto; right: 0; bottom: 0; left: 0;
@@ -2991,7 +3015,7 @@
                     <div class="pillar-card" id="pillar-sdls">
                         <h3>Self-Driving Laboratories</h3>
                         <p>Robotic synthesis and processing platforms, automated sample handling, in-line sensing and feedback systems. AI-guided closed-loop experimentation across a hub-and-spoke network of SDL nodes.</p>
-                        <button class="pillar-expand-btn" onclick="togglePillar(this)">Show more</button>
+                        <button class="pillar-expand-btn" onclick="togglePillar(this)"><span class="btn-label">Show more</span><span class="btn-chevron">&#9662;</span></button>
                         <div class="pillar-expanded">
                             <p>Origin: Big Chemistry (National Growth Fund) and IPM (NWO Gravitation) platforms at ICMS. Hub-and-spoke architecture allows distributed SDL nodes across campus and national partners.</p>
                         </div>
@@ -2999,7 +3023,7 @@
                     <div class="pillar-card" id="pillar-characterisation">
                         <h3>Advanced Characterisation</h3>
                         <p>Optical, electron and X-ray microscopy combined with spectroscopic techniques. Serves as the continuous, real-time verification and integration layer of the autonomous discovery loop.</p>
-                        <button class="pillar-expand-btn" onclick="togglePillar(this)">Show more</button>
+                        <button class="pillar-expand-btn" onclick="togglePillar(this)"><span class="btn-label">Show more</span><span class="btn-chevron">&#9662;</span></button>
                         <div class="pillar-expanded">
                             <p>Connects to NEMI (national electron microscopy) and XNL (X-ray Netherlands). Key verification and integration layer ensuring experimental results feed back into the AI-driven discovery loop.</p>
                             <p class="operational-ref"><strong>Operational reference:</strong> <a href="https://superresolution.nl/" target="_blank" rel="noopener">superresolution.nl</a>, the Advanced Microscopy Facility (AMF) at ICMS.</p>
@@ -3008,7 +3032,7 @@
                     <div class="pillar-card" id="pillar-ai-core">
                         <h3>AI Core</h3>
                         <p>FAIR data backbone, curated model catalogue, dedicated AI science team — the experimental data engine and infrastructure for the next generation of materials foundation models. Federated design serving the full consortium and national partners.</p>
-                        <button class="pillar-expand-btn" onclick="togglePillar(this)">Show more</button>
+                        <button class="pillar-expand-btn" onclick="togglePillar(this)"><span class="btn-label">Show more</span><span class="btn-chevron">&#9662;</span></button>
                         <div class="pillar-expanded">
                             <p>Aligned with SURF and Netherlands eScience Center standards. EOSC service candidate. Serves as the digital backbone connecting all SDL nodes and characterisation facilities, and as the experimental-data source for training and grounding domain-specific materials foundation models.</p>
                         </div>
@@ -4309,7 +4333,7 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
                         <p>Correlated multimodal characterisation. Cross-domain. Permanent research infrastructure.</p>
                     </div>
                 </div>
-                <p class="landscape-cta reveal">For a global SDL landscape scan, <a href="https://sdl-map.discoverylabs.nl" target="_blank" rel="noopener">explore the interactive SDL map</a>.</p>
+                <p class="landscape-cta reveal"><a href="https://sdl-map.discoverylabs.nl" target="_blank" rel="noopener">Compare all six initiatives on the interactive map &rarr;</a></p>
             </section>
 
             <!-- 5. Positioning -->
@@ -4890,7 +4914,10 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
         function togglePillar(button) {
             const expanded = button.nextElementSibling;
             expanded.classList.toggle('open');
-            button.textContent = expanded.classList.contains('open') ? 'Show less' : 'Show more';
+            const isOpen = expanded.classList.contains('open');
+            button.classList.toggle('open', isOpen);
+            const label = button.querySelector('.btn-label');
+            if (label) label.textContent = isOpen ? 'Show less' : 'Show more';
         }
 
         // ==========================================
