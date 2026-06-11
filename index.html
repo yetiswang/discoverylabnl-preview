@@ -1727,18 +1727,47 @@
             gap: 0.6rem;
             scroll-margin-top: 80px;  /* sticky header clearance */
         }
-        /* Slide 3 — Five Frontiers gallery: top-aligned, full-width grid + horizon */
+        /* Slide 3 — Five Frontiers gallery: top-aligned, full-width grid + horizon.
+           Compact treatment so five cards + Horizon 2035 fit a single viewport. */
         .hero-slide-revolution {
             justify-content: flex-start;
-            padding-top: 6rem;
+            padding-top: 4.5rem;
         }
         .hero-slide-revolution > .frontier-grid,
         .hero-slide-revolution > .frontier-horizon {
             width: 100%;
-            max-width: 1180px;
+            max-width: 1240px;
             align-self: center;
         }
-        .hero-slide-revolution > .frontier-horizon { margin-top: 1.75rem; }
+        .hero-slide-revolution > h2 { margin-bottom: 0.4rem !important; }
+        .hero-slide-revolution .frontier-card { padding: 1rem; gap: 0.5rem; }
+        .hero-slide-revolution .frontier-icon { width: 40px; height: 40px; }
+        .hero-slide-revolution .frontier-headline { font-size: 0.95rem; }
+        .hero-slide-revolution .frontier-vision { font-size: 0.79rem; line-height: 1.5; }
+        .hero-slide-revolution .frontier-outcome-2035 { font-size: 0.78rem; line-height: 1.5; padding-top: 0.55rem; }
+        .hero-slide-revolution > .frontier-horizon {
+            margin-top: 1.4rem;
+            max-width: 1020px;
+        }
+        .hero-slide-revolution .horizon-eyebrow { margin-top: 0.9rem !important; margin-bottom: 0.4rem !important; }
+        .hero-slide-revolution .frontier-horizon p { font-size: 0.94rem; line-height: 1.55; }
+        @media (max-height: 820px) {
+            .hero-slide-revolution { padding-top: 3.5rem; }
+            .hero-slide-revolution .frontier-card { padding: 0.85rem; gap: 0.4rem; }
+            .hero-slide-revolution .frontier-icon { width: 34px; height: 34px; }
+            .hero-slide-revolution .frontier-vision {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .hero-slide-revolution .frontier-horizon p {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
         /* Slide 1 — Wake-up call: give the closing italic tagline a hairline lift */
         #dlnl-claim-slide-1 .challenge-text[style*="italic"] {
             margin-top: 0.85rem;
@@ -1959,8 +1988,15 @@
         }
         .frontier-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+        /* Medium screens: symmetric 3 + 2 (quincunx) on a 6-track grid */
+        @media (max-width: 1100px) and (min-width: 641px) {
+            .frontier-grid { grid-template-columns: repeat(6, 1fr); }
+            .frontier-grid .frontier-card { grid-column: span 2; }
+            .frontier-grid .frontier-card:nth-child(4) { grid-column: 2 / 4; }
+            .frontier-grid .frontier-card:nth-child(5) { grid-column: 4 / 6; }
         }
         /* Frontier cards match the World Today card design (uniform thin border, no accent strip) */
         .frontier-card {
@@ -2275,7 +2311,6 @@
         @media (max-width: 1024px) {
             .world-today-grid { grid-template-columns: 1fr 1fr; }
             .world-today-card:last-child { grid-column: 1 / -1; }
-            .frontier-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 640px) {
             .world-today-grid { grid-template-columns: 1fr; gap: 0.9rem; }
