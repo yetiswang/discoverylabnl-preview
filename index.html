@@ -629,6 +629,16 @@
             border-radius: 4px; padding: 2rem; transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease, transform 0.3s ease; cursor: pointer;
         }
         .pillar-card:hover { box-shadow: 0 8px 24px var(--shadow-mid); border-color: var(--tue-red); }
+        .pillar-card[id] { scroll-margin-top: 100px; }
+        /* Inline references from the deck to the pillar cards */
+        .pillar-ref {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted var(--tue-red);
+            transition: border-color 0.2s ease;
+        }
+        .pillar-ref:hover { border-bottom-style: solid; }
+        .pillar-ref:hover strong { color: var(--tue-red); }
         .pillar-card h3 { font-size: 1.3rem; color: var(--tue-red); margin-bottom: 1rem; font-weight: 700; }
         .pillar-card p { font-size: 1rem; line-height: 1.7; color: var(--tue-gray); margin-bottom: 1rem; }
         .pillar-expand-btn {
@@ -2475,7 +2485,7 @@
                         <p>DiscoveryLabNL is a joint DIFFER &times; TU/e initiative: a shared infrastructure for autonomous materials discovery, integrating self-driving laboratories, advanced multimodal characterisation, and an AI Core to accelerate the design, synthesis, and validation of next-generation materials.</p>
                     </div>
                     <p class="challenge-text"><strong>DiscoveryLabNL closes the knowledge chain from atom to function.</strong> It extends a Dutch lineage in materials science and engineering into the next decade's open question: how to design what materials do, not only what they are. Universal AI has industrialised structure prediction for crystalline inorganic materials &mdash; proving what closed-loop infrastructure delivers in one slice. DiscoveryLabNL extends that paradigm to the classes that drive the next decade (soft, hybrid, hierarchical, and far-from-equilibrium), where <strong>function</strong> emerges through dynamics and across length scales no first-principles model can simulate to ground truth and no universal AI can yet reach.</p>
-                    <p class="challenge-text">DiscoveryLabNL is the federated national infrastructure that answers it. The <strong>AI Core</strong> proposes candidate designs grounded in <strong>quantum-physics-informed digital twins</strong>, <strong>Self-Driving Labs</strong> synthesise and execute the experiments at scale, and <strong>Advanced Multimodal Characterisation</strong> verifies what computation cannot reach. <strong>Information materials, designer catalysts and energy materials, actuating polymers, neuromorphic materials, and recyclable thermosets are five candidate demonstrators</strong>, each a domain where Dutch science already leads the world. Five years ago, designing for function was guesswork; five years from now, with DiscoveryLabNL, it becomes <strong>verifiable and explainable</strong> closed loops.</p>
+                    <p class="challenge-text">DiscoveryLabNL is the federated national infrastructure that answers it. The <a class="pillar-ref" href="#pillar-ai-core"><strong>AI Core</strong></a> proposes candidate designs grounded in <strong>quantum-physics-informed digital twins</strong>, <a class="pillar-ref" href="#pillar-sdls"><strong>Self-Driving Labs</strong></a> synthesise and execute the experiments at scale, and <a class="pillar-ref" href="#pillar-characterisation"><strong>Advanced Multimodal Characterisation</strong></a> verifies what computation cannot reach. <a class="pillar-ref" href="#dlnl-claim-slide-3"><strong>Information materials, designer catalysts and energy materials, actuating polymers, neuromorphic materials, and recyclable thermosets are five candidate demonstrators</strong></a>, each a domain where Dutch science already leads the world. Five years ago, designing for function was guesswork; five years from now, with DiscoveryLabNL, it becomes <a class="pillar-ref" href="#dlnl-claim-slide-4"><strong>verifiable and explainable</strong></a> closed loops.</p>
                     <div class="hero-nav-row">
                         <a class="hero-back" href="#dlnl-claim-slide-1" aria-label="Back: the window">&uarr; The window</a>
                         <a class="hero-continue-link" href="#dlnl-claim-slide-3" aria-label="Continue: what we deliver">Continue: what we deliver &darr;</a>
@@ -2884,7 +2894,7 @@
             <section id="pillars">
                 <h2 class="reveal">Three Pillars</h2>
                 <div class="pillars-grid reveal-group">
-                    <div class="pillar-card">
+                    <div class="pillar-card" id="pillar-sdls">
                         <h3>Self-Driving Laboratories</h3>
                         <p>Robotic synthesis and processing platforms, automated sample handling, in-line sensing and feedback systems. AI-guided closed-loop experimentation across a hub-and-spoke network of SDL nodes.</p>
                         <button class="pillar-expand-btn" onclick="togglePillar(this)">Show more</button>
@@ -2892,7 +2902,7 @@
                             <p>Origin: Big Chemistry (National Growth Fund) and IPM (NWO Gravitation) platforms at ICMS. Hub-and-spoke architecture allows distributed SDL nodes across campus and national partners.</p>
                         </div>
                     </div>
-                    <div class="pillar-card">
+                    <div class="pillar-card" id="pillar-characterisation">
                         <h3>Advanced Characterisation</h3>
                         <p>Optical, electron and X-ray microscopy combined with spectroscopic techniques. Serves as the continuous, real-time verification and integration layer of the autonomous discovery loop.</p>
                         <button class="pillar-expand-btn" onclick="togglePillar(this)">Show more</button>
@@ -2901,7 +2911,7 @@
                             <p class="operational-ref"><strong>Operational reference:</strong> <a href="https://superresolution.nl/" target="_blank" rel="noopener">superresolution.nl</a>, the Advanced Microscopy Facility (AMF) at ICMS.</p>
                         </div>
                     </div>
-                    <div class="pillar-card">
+                    <div class="pillar-card" id="pillar-ai-core">
                         <h3>AI Core</h3>
                         <p>FAIR data backbone, curated model catalogue, dedicated AI science team — the experimental data engine and infrastructure for the next generation of materials foundation models. Federated design serving the full consortium and national partners.</p>
                         <button class="pillar-expand-btn" onclick="togglePillar(this)">Show more</button>
