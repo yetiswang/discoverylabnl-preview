@@ -1912,8 +1912,8 @@
         }
         .frontier-card:hover { border-color: var(--tue-red); }
         .frontier-icon {
-            width: 36px; height: 36px;
-            color: var(--tue-red); opacity: 0.85;
+            width: 48px; height: 48px;
+            color: var(--tue-red); opacity: 0.92;
             flex-shrink: 0;
         }
         .frontier-icon svg { width: 100%; height: 100%; }
@@ -2386,15 +2386,21 @@
                 <div class="frontier-grid reveal-group">
                     <div class="frontier-card">
                         <div class="frontier-icon">
-                            <!-- Information materials: data tracks on a substrate -->
+                            <!-- Information materials: wafer with encoded data ring + inline read probe (blue, closed-loop). -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="5" width="18" height="14" rx="1"/>
-                                <line x1="6" y1="9" x2="18" y2="9" opacity="0.55"/>
-                                <line x1="6" y1="12" x2="18" y2="12" opacity="0.55"/>
-                                <line x1="6" y1="15" x2="18" y2="15" opacity="0.55"/>
-                                <circle cx="9" cy="9" r="0.9" fill="currentColor"/>
-                                <circle cx="14" cy="12" r="0.9" fill="currentColor"/>
-                                <circle cx="11" cy="15" r="0.9" fill="currentColor"/>
+                                <!-- Wafer substrate -->
+                                <circle cx="12" cy="13.5" r="7" stroke-width="1.5"/>
+                                <!-- Inner data ring -->
+                                <circle cx="12" cy="13.5" r="3.8" opacity="0.5" stroke-width="1.1"/>
+                                <!-- Encoded bit positions -->
+                                <circle cx="15.8" cy="13.5" r="0.6" fill="currentColor"/>
+                                <circle cx="13" cy="17.2" r="0.6" fill="currentColor"/>
+                                <circle cx="8.8" cy="15.3" r="0.6" fill="currentColor"/>
+                                <circle cx="8.4" cy="11.4" r="0.6" fill="currentColor"/>
+                                <circle cx="11.4" cy="9.8" r="0.6" fill="currentColor"/>
+                                <!-- Inline read probe (closed-loop characterisation) -->
+                                <line x1="12" y1="1" x2="12" y2="6.5" stroke="#6E7FBA" stroke-width="1.8"/>
+                                <circle cx="12" cy="1.5" r="0.7" fill="#6E7FBA" stroke="none"/>
                             </svg>
                         </div>
                         <p class="frontier-domain">Frontier A</p>
@@ -2405,11 +2411,23 @@
 
                     <div class="frontier-card">
                         <div class="frontier-icon">
-                            <!-- Designer catalysts: sun with bolt -->
+                            <!-- Designer catalysts: electrochemical cell with working + counter electrode, H2 bubbles evolving, inline gas sensor probe (blue). -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="4"/>
-                                <path d="M12 2v3m0 14v3M4.22 4.22l2.12 2.12m11.32 11.32l2.12 2.12M2 12h3m14 0h3M4.22 19.78l2.12-2.12m11.32-11.32l2.12-2.12"/>
-                                <path d="M13 10l-2.5 3h3L11 16" stroke-width="1.8"/>
+                                <!-- Cell -->
+                                <rect x="5" y="8" width="14" height="14" rx="1" stroke-width="1.4"/>
+                                <!-- Electrolyte meniscus -->
+                                <path d="M 5 11 Q 9 10.5 12 11 T 19 11" opacity="0.4" stroke-width="0.9"/>
+                                <!-- Working electrode (left, prominent) -->
+                                <line x1="9" y1="22" x2="9" y2="11.5" stroke-width="2"/>
+                                <!-- Counter electrode (right, secondary) -->
+                                <line x1="15" y1="22" x2="15" y2="11.5" stroke-width="1.4" opacity="0.55"/>
+                                <!-- H2 bubbles rising from working electrode -->
+                                <circle cx="10.2" cy="18" r="0.95"/>
+                                <circle cx="9.2" cy="15.5" r="0.75" opacity="0.85"/>
+                                <circle cx="10.1" cy="13.3" r="0.55" opacity="0.65"/>
+                                <!-- Inline gas sensor / fiber probe (closed-loop) -->
+                                <line x1="12" y1="2" x2="12" y2="8" stroke="#6E7FBA" stroke-width="1.8"/>
+                                <circle cx="12" cy="2.5" r="0.7" fill="#6E7FBA" stroke="none"/>
                             </svg>
                         </div>
                         <p class="frontier-domain">Frontier B</p>
@@ -2420,14 +2438,19 @@
 
                     <div class="frontier-card">
                         <div class="frontier-icon">
-                            <!-- Actuating polymers: hydrogel / droplet network scaffold -->
+                            <!-- Actuating polymers: soft actuator mid-curl with internal pneumatic channel; machine-vision camera observing along a sight line (blue). -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="7" r="3.5"/>
-                                <circle cx="6.5" cy="16" r="3"/>
-                                <circle cx="17.5" cy="16" r="3"/>
-                                <line x1="10" y1="9.8" x2="8" y2="13.5" opacity="0.45"/>
-                                <line x1="14" y1="9.8" x2="16" y2="13.5" opacity="0.45"/>
-                                <line x1="9.5" y1="16" x2="14.5" y2="16" opacity="0.45"/>
+                                <!-- Mounting base -->
+                                <line x1="3" y1="22" x2="11" y2="22" stroke-width="1.8"/>
+                                <!-- Soft actuator curling (S-curve, prominent stroke for tactile body) -->
+                                <path d="M 7 21 C 7 15, 13 13, 15 10 C 16.5 7.5, 19.5 6.5, 21 5.5" stroke-width="2.4"/>
+                                <!-- Internal pneumatic channel (dashed parallel inside the body) -->
+                                <path d="M 8.3 21 C 8.3 15.3, 14 13.6, 16 10.6 C 17.3 8.5, 20 7.8, 21.2 7" stroke-dasharray="0.6 1.4" opacity="0.55" stroke-width="0.9"/>
+                                <!-- Machine-vision camera (closed-loop observer) -->
+                                <rect x="1.2" y="1.5" width="5" height="4" rx="0.6" stroke="#6E7FBA" stroke-width="1.4"/>
+                                <circle cx="3.7" cy="3.5" r="1.1" stroke="#6E7FBA" stroke-width="1.2"/>
+                                <!-- Sight line to actuator -->
+                                <line x1="6.2" y1="4" x2="14.5" y2="10.5" stroke="#6E7FBA" stroke-dasharray="1 1.4" opacity="0.55" stroke-width="0.9"/>
                             </svg>
                         </div>
                         <p class="frontier-domain">Frontier C</p>
@@ -2438,19 +2461,32 @@
 
                     <div class="frontier-card">
                         <div class="frontier-icon">
-                            <!-- Neuromorphic materials: central node with dendritic branches and synaptic terminals -->
+                            <!-- Neuromorphic materials: 3x3 memristor crossbar array with one active synaptic junction highlighted; autonomous probe needle (blue) landed on the active junction. -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="2.5"/>
-                                <line x1="12" y1="9.5" x2="12" y2="4" opacity="0.6"/>
-                                <line x1="14.2" y1="10.7" x2="19" y2="6" opacity="0.6"/>
-                                <line x1="14.2" y1="13.3" x2="19" y2="18" opacity="0.6"/>
-                                <line x1="9.8" y1="13.3" x2="5" y2="18" opacity="0.6"/>
-                                <line x1="9.8" y1="10.7" x2="5" y2="6" opacity="0.6"/>
-                                <circle cx="12" cy="3" r="1" fill="currentColor"/>
-                                <circle cx="20" cy="5" r="1" fill="currentColor"/>
-                                <circle cx="20" cy="19" r="1" fill="currentColor"/>
-                                <circle cx="4" cy="19" r="1" fill="currentColor"/>
-                                <circle cx="4" cy="5" r="1" fill="currentColor"/>
+                                <!-- Substrate outline (subtle) -->
+                                <rect x="4" y="6" width="16" height="14" rx="0.8" opacity="0.4" stroke-width="1.1"/>
+                                <!-- Crossbar horizontal lines (bottom layer) -->
+                                <line x1="6" y1="10" x2="18" y2="10" opacity="0.55" stroke-width="1.2"/>
+                                <line x1="6" y1="14" x2="18" y2="14" opacity="0.55" stroke-width="1.2"/>
+                                <line x1="6" y1="18" x2="18" y2="18" opacity="0.55" stroke-width="1.2"/>
+                                <!-- Crossbar vertical lines (top layer) -->
+                                <line x1="9" y1="7" x2="9" y2="19.5" opacity="0.55" stroke-width="1.2"/>
+                                <line x1="13" y1="7" x2="13" y2="19.5" opacity="0.55" stroke-width="1.2"/>
+                                <line x1="17" y1="7" x2="17" y2="19.5" opacity="0.55" stroke-width="1.2"/>
+                                <!-- Inactive synaptic junctions (faint) -->
+                                <circle cx="9" cy="10" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <circle cx="13" cy="10" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <circle cx="17" cy="10" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <circle cx="9" cy="14" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <circle cx="17" cy="14" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <circle cx="9" cy="18" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <circle cx="13" cy="18" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <circle cx="17" cy="18" r="0.5" fill="currentColor" opacity="0.4"/>
+                                <!-- Active synaptic junction (centre, highlighted) -->
+                                <circle cx="13" cy="14" r="1.5" fill="currentColor"/>
+                                <!-- Autonomous probe needle landed on the active junction -->
+                                <line x1="22" y1="2.5" x2="14.1" y2="12.9" stroke="#6E7FBA" stroke-width="1.6"/>
+                                <circle cx="22" cy="2.5" r="0.7" fill="#6E7FBA" stroke="none"/>
                             </svg>
                         </div>
                         <p class="frontier-domain">Frontier D</p>
@@ -2461,11 +2497,20 @@
 
                     <div class="frontier-card">
                         <div class="frontier-icon">
-                            <!-- Recyclable thermosets: closing arc with material core -->
+                            <!-- Recyclable thermosets: triangular polymer network with two static crosslinks + one dynamic (dashed) covalent bond; enclosing closed-loop arrow (blue) signals reversibility. -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M19.5 12 a7.5 7.5 0 1 0 -2.4 5.7"/>
-                                <polyline points="16.5 14.5 16.5 18 20.5 18"/>
-                                <circle cx="12" cy="12" r="2.5" opacity="0.55"/>
+                                <!-- Closed-loop reformulation arrow -->
+                                <path d="M 21 12.5 A 9 9 0 1 1 17 5" stroke="#6E7FBA" stroke-width="1.4" opacity="0.7"/>
+                                <polyline points="21 12.5 18 7 12 8.5" stroke="#6E7FBA" stroke-width="1.4" opacity="0.7"/>
+                                <!-- Polymer network: three crosslinker nodes -->
+                                <circle cx="9" cy="11.5" r="1.4" fill="currentColor"/>
+                                <circle cx="15" cy="12.2" r="1.4" fill="currentColor"/>
+                                <circle cx="12" cy="18" r="1.4" fill="currentColor"/>
+                                <!-- Static covalent bonds (solid) -->
+                                <line x1="10.3" y1="11.7" x2="13.7" y2="12" stroke-width="1.5"/>
+                                <line x1="14.4" y1="13.4" x2="12.6" y2="16.7" stroke-width="1.5"/>
+                                <!-- Dynamic covalent bond (dashed: breaks and reforms) -->
+                                <line x1="9.5" y1="12.7" x2="11.5" y2="16.7" stroke-dasharray="1 1.4" stroke-width="1.5"/>
                             </svg>
                         </div>
                         <p class="frontier-domain">Frontier E</p>
