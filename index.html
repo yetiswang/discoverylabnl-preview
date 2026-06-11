@@ -1683,8 +1683,29 @@
             flex-direction: column;
             justify-content: center;
             gap: 0.6rem;
-            scroll-margin-top: 75px;  /* sticky header height */
+            scroll-margin-top: 110px;  /* sticky header (64px) + stripnav (~46px) */
         }
+        /* Slide 3 — Five Frontiers gallery: top-aligned, full-width grid + horizon */
+        .hero-slide-revolution {
+            justify-content: flex-start;
+            padding-top: 6rem;
+        }
+        .hero-slide-revolution > .frontier-grid,
+        .hero-slide-revolution > .frontier-horizon {
+            width: 100%;
+            max-width: 1180px;
+            align-self: center;
+        }
+        .hero-slide-revolution > .frontier-horizon { margin-top: 1.75rem; }
+        /* Slide 1 — Wake-up call: give the closing italic tagline a hairline lift */
+        #dlnl-claim-slide-1 .challenge-text[style*="italic"] {
+            margin-top: 0.85rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--tue-light-border);
+            font-size: 0.92em;
+        }
+        /* Sections — uniform scroll-margin so anchored jumps clear sticky header + stripnav */
+        section[id] { scroll-margin-top: 110px; }
         /* Continue/Back/nav-row stay PINNED to the bottom of the viewport as long as the slide is in view */
         .hero-slide > .hero-continue,
         .hero-slide > .hero-back,
@@ -1959,6 +1980,100 @@
             margin-bottom: 0.25rem;
             opacity: 0.85;
         }
+        /* ---------- Sticky page-wide nav strip (Style B: progress-line with 8 nodes) ---------- */
+        .dlnl-stripnav {
+            position: sticky;
+            top: 64px;
+            z-index: 95;
+            background: rgba(var(--page-bg-rgb, 250, 248, 244), 0.94);
+            backdrop-filter: saturate(180%) blur(12px);
+            -webkit-backdrop-filter: saturate(180%) blur(12px);
+            border-bottom: 1px solid var(--tue-light-border);
+            padding: 1.05rem 1.75rem 0.75rem;
+            transition: opacity 0.25s ease;
+        }
+        .dlnl-stripnav__track {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 1px;
+            background: var(--tue-light-border);
+        }
+        .dlnl-stripnav__progress {
+            position: absolute;
+            left: 0; top: 0;
+            height: 1px;
+            width: 0%;
+            background: var(--tue-red);
+            transition: width 0.12s linear;
+        }
+        .dlnl-stripnav__nodes {
+            position: absolute;
+            top: -4px; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .dlnl-stripnav__node {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.55rem;
+            color: var(--tue-gray);
+            text-decoration: none;
+            font-family: 'Avenir Next LT Pro', 'Avenir Next', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+        .dlnl-stripnav__dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            border: 1px solid var(--tue-light-border);
+            background: var(--surface, #fff);
+            box-sizing: border-box;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+        .dlnl-stripnav__label { line-height: 1; white-space: nowrap; }
+        .dlnl-stripnav__node:hover { color: var(--tue-dark); }
+        .dlnl-stripnav__node:hover .dlnl-stripnav__dot { border-color: var(--tue-red); }
+        .dlnl-stripnav__node.active { color: var(--tue-red); }
+        .dlnl-stripnav__node.active .dlnl-stripnav__dot {
+            background: var(--tue-red);
+            border-color: var(--tue-red);
+            transform: scale(1.25);
+        }
+        @media (max-width: 820px) {
+            .dlnl-stripnav { top: 52px; padding: 0.7rem 0.85rem 0.55rem; }
+            .dlnl-stripnav__label { display: none; }
+            .dlnl-stripnav__node { gap: 0; }
+        }
+        /* Hide redundant nav mechanisms (replaced by the strip above) */
+        .scroll-progress,
+        .nav-trigger,
+        .sidebar,
+        .sidebar-backdrop,
+        .page-indicator,
+        .bottom-tabs {
+            display: none !important;
+        }
+        /* Landing — make room for the skip link below "Scroll to explore" */
+        .landing-skip-link {
+            display: inline-block;
+            margin-top: 0.55rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            border-bottom: 1px dashed rgba(255,255,255,0.45);
+            padding-bottom: 1px;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .landing-skip-link:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.85); }
         .frontier-footnote {
             margin-top: 2rem;
             font-size: 0.85rem;
@@ -2095,24 +2210,42 @@
         </button>
     </header>
 
+    <!-- Sticky page-wide nav strip (Style B) — unified nav for the whole site -->
+    <nav class="dlnl-stripnav" id="dlnlStripnav" aria-label="Page navigation">
+        <div class="dlnl-stripnav__track">
+            <div class="dlnl-stripnav__progress" id="dlnlStripnavProgress"></div>
+            <div class="dlnl-stripnav__nodes">
+                <a href="#dlnl-claim-slide-1" class="dlnl-stripnav__node" data-target="dlnl-claim-slide-1"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">The window</span></a>
+                <a href="#dlnl-claim-slide-2" class="dlnl-stripnav__node" data-target="dlnl-claim-slide-2"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">What we are</span></a>
+                <a href="#dlnl-claim-slide-3" class="dlnl-stripnav__node" data-target="dlnl-claim-slide-3"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">What we deliver</span></a>
+                <a href="#dlnl-claim-slide-4" class="dlnl-stripnav__node" data-target="dlnl-claim-slide-4"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">How it works</span></a>
+                <a href="#dlnl-claim-slide-5" class="dlnl-stripnav__node" data-target="dlnl-claim-slide-5"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">The claim</span></a>
+                <a href="#pillars" class="dlnl-stripnav__node" data-target="pillars"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">Architecture</span></a>
+                <a href="#consortium" class="dlnl-stripnav__node" data-target="consortium"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">Consortium</span></a>
+                <a href="#contact" class="dlnl-stripnav__node" data-target="contact"><span class="dlnl-stripnav__dot"></span><span class="dlnl-stripnav__label">Contact</span></a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Main container -->
-    <!-- Floating contents trigger (desktop only) -->
+    <!-- Floating contents trigger (desktop only, now hidden by sticky strip CSS) -->
     <div class="nav-trigger" id="navTrigger">Contents</div>
     <!-- Sidebar backdrop -->
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <div class="container">
-        <!-- Sidebar navigation — overlay drawer -->
-        <aside class="sidebar" id="sidebar">
+        <!-- Sidebar navigation — DEPRECATED 2026-06-11: replaced by sticky stripnav above (.dlnl-stripnav). Kept in DOM with display:none for JS compatibility; will be removed in a future pass. -->
+        <aside class="sidebar" id="sidebar" style="display:none" aria-hidden="true">
             <nav>
                 <ul class="sidebar-nav">
                     <li class="active"><a href="#landing">Landing</a></li>
-                    <li><a href="#dlnl-claim-slide-1">From Atom to Function</a></li>
-                    <li><a href="#dlnl-claim-slide-2">Methodology</a></li>
-                    <li><a href="#dlnl-claim-slide-3">Challenge &amp; Infrastructure</a></li>
+                    <li><a href="#dlnl-claim-slide-1">The window</a></li>
+                    <li><a href="#dlnl-claim-slide-2">What we are</a></li>
+                    <li><a href="#dlnl-claim-slide-3">What we deliver</a></li>
+                    <li><a href="#dlnl-claim-slide-4">How it works</a></li>
+                    <li><a href="#dlnl-claim-slide-5">The claim</a></li>
                     <li><a href="#world-today">The World Today</a></li>
                     <li><a href="#pillars">Three Pillars</a></li>
-                    <li><a href="#revolution">Five Frontiers</a></li>
                     <li><a href="#campus">Campus Partners</a></li>
                     <li><a href="#consortium">An Open Consortium</a></li>
                     <li><a href="#landscape">Landscape</a></li>
@@ -2202,7 +2335,7 @@
                                 <textPath href="#ring-outer-path" startOffset="2%">FAIR MULTIMODAL DATA</textPath>
                             </text>
                             <text class="ring-keyword" fill="rgba(255,255,255,0.25)">
-                                <textPath href="#ring-outer-path" startOffset="22%">FOUR FRONTIERS</textPath>
+                                <textPath href="#ring-outer-path" startOffset="22%">FIVE FRONTIERS</textPath>
                             </text>
                             <text class="ring-keyword" fill="rgba(255,255,255,0.25)">
                                 <textPath href="#ring-outer-path" startOffset="38%">DUTCH MATERIALS GENOME</textPath>
@@ -2226,25 +2359,156 @@
                 </div>
 
             </section>
-            <div class="landing-scroll">&darr; Scroll to explore</div>
+            <div class="landing-scroll">
+                &darr; Scroll to explore
+                <br>
+                <a href="#dlnl-claim-slide-2" class="landing-skip-link">Or jump straight to: what DiscoveryLabNL is &rarr;</a>
+            </div>
 
-            <!-- 2. The DLNL Claim (Hero, two slides stacked vertically) -->
+            <!-- 2. The DLNL Claim (Hero, five slides stacked vertically) -->
             <section id="dlnl-claim">
+                <!-- Slide 1 of 5 — The window (wake-up call, Jan's voice) -->
                 <div class="hero-slide hero-slide-1" id="dlnl-claim-slide-1">
+                    <h2 class="reveal">A stronghold at a turning point.</h2>
+                    <p class="hero-slide-label">Slide 1 of 5 &middot; The window</p>
+                    <p class="challenge-text">The chemical and materials industries in the Netherlands and Europe face a crucial <strong>rejuvenation phase</strong>, with urgency to move from commodity to high-end material applications &mdash; smart coatings, biomedical materials, energy producing and storage systems, information and communication materials. The Netherlands has been a <strong>stronghold of expertise</strong> in these domains. With the advent of machine learning and self-driving labs, the optimisation process from knowledge to application is being revolutionised in speed and effectiveness, even compensating for incomplete knowledge of intrinsic material features.</p>
+                    <p class="challenge-text"><strong>The Netherlands will lose its leading position if it does not embrace this development quickly.</strong> That risk threatens the pipeline of innovative high-tech companies the country's traditional commodity industries need to renew themselves.</p>
+                    <p class="challenge-text" style="font-style: italic; opacity: 0.78;">DiscoveryLabNL is how the Netherlands embraces it.</p>
+                    <div class="hero-continue">
+                        <a href="#dlnl-claim-slide-2" aria-label="Continue to slide 2 (what DiscoveryLabNL is)">Continue to slide 2 (what DiscoveryLabNL is) &darr;</a>
+                    </div>
+                </div>
+                <!-- Slide 2 of 5 — What we are (From Atom to Function) -->
+                <div class="hero-slide hero-slide-1" id="dlnl-claim-slide-2">
                     <h2 class="reveal">From Atom to Function: designing what materials do, not only what they are.</h2>
-                    <p class="hero-slide-label">Slide 1 of 3 &middot; The core argument</p>
+                    <p class="hero-slide-label">Slide 2 of 5 &middot; The core argument</p>
                     <div class="challenge-callout reveal">
                         <p>DiscoveryLabNL is a joint DIFFER &times; TU/e initiative: a shared infrastructure for autonomous materials discovery, integrating self-driving laboratories, advanced multimodal characterisation, and an AI Core to accelerate the design, synthesis, and validation of next-generation materials.</p>
                     </div>
-                    <p class="challenge-text">Artificial intelligence and high-throughput laboratory automation have the potential to fundamentally transform materials and molecular research, accelerating the optimisation of desired properties, uncovering unique parameter sets, and enabling the design of materials with unprecedented features.</p>
-                    <p class="challenge-text"><strong>DiscoveryLabNL closes the knowledge chain from atom to function.</strong> It extends a Dutch lineage in materials science and engineering into the next decade's open question: how to design what materials do, not only what they are. Universal AI has industrialised structure prediction for stable crystalline inorganic materials, proving what closed-loop infrastructure can deliver in one slice of materials science. DiscoveryLabNL extends that paradigm to the classes that drive the next decade (soft, hybrid, hierarchical, and far-from-equilibrium), where <strong>function</strong> emerges through dynamics and across length scales no first-principles model can simulate to ground truth and no universal AI can yet reach.</p>
+                    <p class="challenge-text"><strong>DiscoveryLabNL closes the knowledge chain from atom to function.</strong> It extends a Dutch lineage in materials science and engineering into the next decade's open question: how to design what materials do, not only what they are. Universal AI has industrialised structure prediction for crystalline inorganic materials &mdash; proving what closed-loop infrastructure delivers in one slice. DiscoveryLabNL extends that paradigm to the classes that drive the next decade (soft, hybrid, hierarchical, and far-from-equilibrium), where <strong>function</strong> emerges through dynamics and across length scales no first-principles model can simulate to ground truth and no universal AI can yet reach.</p>
                     <p class="challenge-text">DiscoveryLabNL is the federated national infrastructure that answers it. The <strong>AI Core</strong> proposes candidate designs grounded in <strong>quantum-physics-informed digital twins</strong>, <strong>Self-Driving Labs</strong> synthesise and execute the experiments at scale, and <strong>Advanced Multimodal Characterisation</strong> verifies what computation cannot reach. <strong>Information materials, designer catalysts and energy materials, actuating polymers, neuromorphic materials, and recyclable thermosets are five candidate demonstrators</strong>, each a domain where Dutch science already leads the world. Five years ago, designing for function was guesswork; five years from now, with DiscoveryLabNL, it becomes <strong>verifiable and explainable</strong> closed loops.</p>
-                    <div class="hero-continue">
-                        <a href="#dlnl-claim-slide-2" aria-label="Continue to slide 2 (methodology)">Continue to slide 2 (methodology) &darr;</a>
+                    <div class="hero-nav-row">
+                        <a class="hero-back" href="#dlnl-claim-slide-1" aria-label="Back to slide 1">&uarr; Back to slide 1</a>
+                        <a class="hero-continue-link" href="#dlnl-claim-slide-3" aria-label="Continue to slide 3 (what we deliver)">Continue to slide 3 (what we deliver) &darr;</a>
                     </div>
                 </div>
-                                <div class="hero-slide hero-slide-methodology" id="dlnl-claim-slide-2">
-                    <p class="hero-slide-label hero-slide-label-light">Slide 2 of 3 &middot; Our methodology</p>
+                <!-- Slide 3 of 5 — What we deliver (Five Frontiers + Horizon 2035, moved from #revolution) -->
+                <div class="hero-slide hero-slide-1 hero-slide-revolution" id="dlnl-claim-slide-3">
+                    <h2 class="reveal">The Revolution We Enable</h2>
+                    <p class="hero-slide-label">Slide 3 of 5 &middot; Five frontiers, one architecture</p>
+                    <div class="frontier-grid reveal-group">
+                        <div class="frontier-card">
+                            <div class="frontier-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="13.5" r="7" stroke-width="1.5"/>
+                                    <circle cx="12" cy="13.5" r="3.8" opacity="0.5" stroke-width="1.1"/>
+                                    <circle cx="15.8" cy="13.5" r="0.6" fill="currentColor"/>
+                                    <circle cx="13" cy="17.2" r="0.6" fill="currentColor"/>
+                                    <circle cx="8.8" cy="15.3" r="0.6" fill="currentColor"/>
+                                    <circle cx="8.4" cy="11.4" r="0.6" fill="currentColor"/>
+                                    <circle cx="11.4" cy="9.8" r="0.6" fill="currentColor"/>
+                                    <line x1="12" y1="1" x2="12" y2="6.5" stroke="#6E7FBA" stroke-width="1.8"/>
+                                    <circle cx="12" cy="1.5" r="0.7" fill="#6E7FBA" stroke="none"/>
+                                </svg>
+                            </div>
+                            <p class="frontier-domain">Frontier A</p>
+                            <h3 class="frontier-headline">Information materials</h3>
+                            <p class="frontier-vision">Materials whose internal state stores and processes information at orders-of-magnitude lower energy than silicon-era computing.</p>
+                            <p class="frontier-outcome-2035"><span class="outcome-eyebrow">By 2030&ndash;2035</span>Information materials that can store data at a fraction of the energy costs now associated with data centres.</p>
+                        </div>
+                        <div class="frontier-card">
+                            <div class="frontier-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="5" y="8" width="14" height="14" rx="1" stroke-width="1.4"/>
+                                    <path d="M 5 11 Q 9 10.5 12 11 T 19 11" opacity="0.4" stroke-width="0.9"/>
+                                    <line x1="9" y1="22" x2="9" y2="11.5" stroke-width="2"/>
+                                    <line x1="15" y1="22" x2="15" y2="11.5" stroke-width="1.4" opacity="0.55"/>
+                                    <circle cx="10.2" cy="18" r="0.95"/>
+                                    <circle cx="9.2" cy="15.5" r="0.75" opacity="0.85"/>
+                                    <circle cx="10.1" cy="13.3" r="0.55" opacity="0.65"/>
+                                    <line x1="12" y1="2" x2="12" y2="8" stroke="#6E7FBA" stroke-width="1.8"/>
+                                    <circle cx="12" cy="2.5" r="0.7" fill="#6E7FBA" stroke="none"/>
+                                </svg>
+                            </div>
+                            <p class="frontier-domain">Frontier B</p>
+                            <h3 class="frontier-headline">Designer catalysts and energy materials</h3>
+                            <p class="frontier-vision">Catalysts and energy materials designed for target transformations, freeing Europe from critical raw material dependencies.</p>
+                            <p class="frontier-outcome-2035"><span class="outcome-eyebrow">By 2030&ndash;2035</span>Smart electrodes more effective in hydrogen generation than current systems.</p>
+                        </div>
+                        <div class="frontier-card">
+                            <div class="frontier-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="3" y1="22" x2="11" y2="22" stroke-width="1.8"/>
+                                    <path d="M 7 21 C 7 15, 13 13, 15 10 C 16.5 7.5, 19.5 6.5, 21 5.5" stroke-width="2.4"/>
+                                    <path d="M 8.3 21 C 8.3 15.3, 14 13.6, 16 10.6 C 17.3 8.5, 20 7.8, 21.2 7" stroke-dasharray="0.6 1.4" opacity="0.55" stroke-width="0.9"/>
+                                    <rect x="1.2" y="1.5" width="5" height="4" rx="0.6" stroke="#6E7FBA" stroke-width="1.4"/>
+                                    <circle cx="3.7" cy="3.5" r="1.1" stroke="#6E7FBA" stroke-width="1.2"/>
+                                    <line x1="6.2" y1="4" x2="14.5" y2="10.5" stroke="#6E7FBA" stroke-dasharray="1 1.4" opacity="0.55" stroke-width="0.9"/>
+                                </svg>
+                            </div>
+                            <p class="frontier-domain">Frontier C</p>
+                            <h3 class="frontier-headline">Actuating polymers and soft systems</h3>
+                            <p class="frontier-vision">Polymers and soft matter designed to sense, actuate, and reconfigure across length and time scales, with function emerging through molecular dynamics.</p>
+                            <p class="frontier-outcome-2035"><span class="outcome-eyebrow">By 2030&ndash;2035</span>Actuating materials applied in medical devices, including soft robotics for precision surgery.</p>
+                        </div>
+                        <div class="frontier-card">
+                            <div class="frontier-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="6" width="16" height="14" rx="0.8" opacity="0.4" stroke-width="1.1"/>
+                                    <line x1="6" y1="10" x2="18" y2="10" opacity="0.55" stroke-width="1.2"/>
+                                    <line x1="6" y1="14" x2="18" y2="14" opacity="0.55" stroke-width="1.2"/>
+                                    <line x1="6" y1="18" x2="18" y2="18" opacity="0.55" stroke-width="1.2"/>
+                                    <line x1="9" y1="7" x2="9" y2="19.5" opacity="0.55" stroke-width="1.2"/>
+                                    <line x1="13" y1="7" x2="13" y2="19.5" opacity="0.55" stroke-width="1.2"/>
+                                    <line x1="17" y1="7" x2="17" y2="19.5" opacity="0.55" stroke-width="1.2"/>
+                                    <circle cx="9" cy="10" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="13" cy="10" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="17" cy="10" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="9" cy="14" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="17" cy="14" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="9" cy="18" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="13" cy="18" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="17" cy="18" r="0.5" fill="currentColor" opacity="0.4"/>
+                                    <circle cx="13" cy="14" r="1.5" fill="currentColor"/>
+                                    <line x1="22" y1="2.5" x2="14.1" y2="12.9" stroke="#6E7FBA" stroke-width="1.6"/>
+                                    <circle cx="22" cy="2.5" r="0.7" fill="#6E7FBA" stroke="none"/>
+                                </svg>
+                            </div>
+                            <p class="frontier-domain">Frontier D</p>
+                            <h3 class="frontier-headline">Neuromorphic materials</h3>
+                            <p class="frontier-vision">Material systems that compute by their own physics &mdash; synaptic memory, in-materio learning, autonomous decision substrates beyond the von Neumann boundary.</p>
+                            <p class="frontier-outcome-2035"><span class="outcome-eyebrow">By 2030&ndash;2035</span>Neuromorphic materials that enable devices to operate autonomously.</p>
+                        </div>
+                        <div class="frontier-card">
+                            <div class="frontier-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M 21 12.5 A 9 9 0 1 1 17 5" stroke="#6E7FBA" stroke-width="1.4" opacity="0.7"/>
+                                    <polyline points="21 12.5 18 7 12 8.5" stroke="#6E7FBA" stroke-width="1.4" opacity="0.7"/>
+                                    <circle cx="9" cy="11.5" r="1.4" fill="currentColor"/>
+                                    <circle cx="15" cy="12.2" r="1.4" fill="currentColor"/>
+                                    <circle cx="12" cy="18" r="1.4" fill="currentColor"/>
+                                    <line x1="10.3" y1="11.7" x2="13.7" y2="12" stroke-width="1.5"/>
+                                    <line x1="14.4" y1="13.4" x2="12.6" y2="16.7" stroke-width="1.5"/>
+                                    <line x1="9.5" y1="12.7" x2="11.5" y2="16.7" stroke-dasharray="1 1.4" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <p class="frontier-domain">Frontier E</p>
+                            <h3 class="frontier-headline">Recyclable thermosets and circular materials</h3>
+                            <p class="frontier-vision">High-performance polymers and composites engineered for circularity, breaking the historical trade-off between durability and recyclability.</p>
+                            <p class="frontier-outcome-2035"><span class="outcome-eyebrow">By 2030&ndash;2035</span>Fully recyclable thermoset materials without loss of mechanical properties.</p>
+                        </div>
+                    </div>
+                    <div class="frontier-horizon reveal">
+                        <p class="horizon-eyebrow">Horizon 2035</p>
+                        <p>By 2035, DiscoveryLabNL is the Dutch interface for designing what materials do: the operational layer on which the Netherlands' information-materials, energy, actuating-soft-matter, neuromorphic, and circular-materials discovery communities run their <strong>autonomous, verifiable, explainable closed loops</strong>. Multimodal characterisation as in-line verification has become standard practice across the five frontiers, the AI Core's physics-grounded models and digital twins are shared community infrastructure, and the Dutch materials-function genome is the foundational dataset of European materials R&amp;D. What was demonstrated in narrow form for individual material classes over the past decade, DiscoveryLabNL industrialises across materials function broadly, becoming the federated national platform on which the next decade of discovery is built.</p>
+                    </div>
+                    <div class="hero-nav-row">
+                        <a class="hero-back" href="#dlnl-claim-slide-2" aria-label="Back to slide 2 (what we are)">&uarr; Back to slide 2 (what we are)</a>
+                        <a class="hero-continue-link" href="#dlnl-claim-slide-4" aria-label="Continue to slide 4 (how it works)">Continue to slide 4 (how it works) &darr;</a>
+                    </div>
+                </div>
+                                <div class="hero-slide hero-slide-methodology" id="dlnl-claim-slide-4">
+                    <p class="hero-slide-label hero-slide-label-light">Slide 4 of 5 &middot; Our methodology</p>
                     <h3 class="methodology-title">The Autonomous Discovery Loop</h3>
                     <p class="methodology-text">DiscoveryLabNL operates a continuous loop between <em>exploration</em> and <em>interpretation</em>. The <strong>AI Core</strong> proposes candidate designs grounded in quantum-physics-informed digital twins. <strong>Self-Driving Labs</strong> synthesise and execute at scale. <strong>Advanced Multimodal Characterisation</strong> verifies what computation cannot reach, with multimodal integration and correlation as the core methodology that fuses measurement modalities into actionable, verifiable knowledge. Every turn closes back into the AI Core and lowers the cost of the next discovery.</p>
                     <p class="methodology-text-secondary">Like a mind that works fast and slow, DiscoveryLabNL pairs fast exploration with slow, careful interpretation. Self-Driving Labs propose and execute at scale; Advanced Multimodal Characterisation verifies what computation cannot reach; the AI Core learns the design rules that close the loop. Discovery requires both speeds, working together, for results to be verifiable.</p>
@@ -2330,18 +2594,18 @@
                     </div>
                     <p class="methodology-pull-quote">Fast and slow, working together, for verifiable discoveries.</p>
                     <div class="hero-nav-row">
-                        <a class="hero-back" href="#dlnl-claim-slide-1" aria-label="Back to slide 1">&uarr; Back to slide 1</a>
-                        <a class="hero-continue-link" href="#dlnl-claim-slide-3" aria-label="Continue to slide 3">Continue to slide 3 &darr;</a>
+                        <a class="hero-back" href="#dlnl-claim-slide-3" aria-label="Back to slide 3 (what we deliver)">&uarr; Back to slide 3 (what we deliver)</a>
+                        <a class="hero-continue-link" href="#dlnl-claim-slide-5" aria-label="Continue to slide 5 (the claim)">Continue to slide 5 (the claim) &darr;</a>
                     </div>
                 </div>
-                <div class="hero-slide hero-slide-3" id="dlnl-claim-slide-3">
-                    <p class="hero-slide-label">Slide 3 of 3 &middot; The challenge and our infrastructure</p>
+                <div class="hero-slide hero-slide-1" id="dlnl-claim-slide-5">
+                    <h2 class="reveal">Compound, or fragment.</h2>
+                    <p class="hero-slide-label">Slide 5 of 5 &middot; The claim</p>
                     <p class="challenge-text">This potential is widely recognised across the broader materials community, yet has also produced fragmentation: parallel, disconnected efforts that fall short of the systemic integration needed to realise AI's full scientific impact.</p>
                     <p class="challenge-text">DIFFER and TU/e together hold nationally recognised SDL foundations: DIFFER's autonomous energy-materials discovery capacity led by Suleyman Er underpins the LSRI Materials group pathway, and TU/e's ICMS contributes SDL platforms developed through the NWO Gravitation Programme Interactive Polymer Materials (IPM) and the National Growth Fund programme Big Chemistry, establishing a proven joint platform for this next step.</p>
                     <p class="challenge-text">DiscoveryLabNL is the <strong>augmented lab</strong>: one infrastructure, one scientific argument, five candidate demonstrators, and the Dutch interface for the global materials genome. Every FAIR multimodal verification lowers the cost of the next discovery. The alternative is <strong>fragmented, hollow labs that do not compound</strong>.</p>
-                    <p class="challenge-text">The stakes extend well beyond the laboratory. The energy transition, the shift toward circular material flows, and the search for sustainable alternatives to critical raw materials are all bottlenecked by the pace of materials discovery. These are not problems that incremental experimentation can solve at the speed society requires. Infrastructure that systematically accelerates the design, synthesis, and validation of new materials is no longer a competitive advantage; it is a societal necessity.</p>
                     <div class="hero-back">
-                        <a href="#dlnl-claim-slide-2" aria-label="Back to slide 2 (methodology)">&uarr; Back to slide 2 (methodology)</a>
+                        <a href="#dlnl-claim-slide-4" aria-label="Back to slide 4 (methodology)">&uarr; Back to slide 4 (methodology)</a>
                     </div>
                 </div>
             </section>
@@ -2362,10 +2626,6 @@
                         <h3>The window is European, and it is now.</h3>
                         <p>The Draghi report named the gap. The Critical Raw Materials Act named the consequence. The forthcoming <strong>Advanced Materials Act</strong> names the response: <em>&ldquo;intentionally designed and engineered materials with innovative properties and functionalities&rdquo;</em> (EC consultation, Oct 2025). The Netherlands holds the strongest concentration of soft-matter, catalysis, mechanical, and optoelectronic groups on the continent, with industrial gravity from Brainport, PhotonDelta, DIFFER's 2026 digitalisation programme, and the energy-transition consortia. The LSRI 2027 cycle is the moment to act.</p>
                     </div>
-                    <div class="world-today-card reveal">
-                        <h3>The industrial bottom line.</h3>
-                        <p>The chemical and materials industries in the Netherlands and Europe face a crucial rejuvenation phase, with urgency to move from commodity to high-end material applications &mdash; smart coatings, biomedical materials, energy producing and storage systems, information and communication materials. The Netherlands has been a stronghold of expertise in these domains. With the advent of machine learning and self-driving labs, the optimisation process from knowledge to application is being revolutionised in speed and effectiveness, even compensating for incomplete knowledge of intrinsic material features. The Netherlands will lose its leading position if it does not embrace this development quickly. That risk threatens the pipeline of innovative high-tech companies the country's traditional commodity industries need to renew themselves.</p>
-                    </div>
                 </div>
 
                 <div class="sdl-map-block reveal">
@@ -2378,8 +2638,8 @@
                 </div>
             </section>
 
-            <!-- 4. The Revolution -->
-            <section id="revolution">
+            <!-- 4. The Revolution — content moved into hero deck as slide 3 (#dlnl-claim-slide-3); section retained hidden so anchor #revolution still resolves via JS redirect -->
+            <section id="revolution-OLD-REMOVED" style="display:none !important" aria-hidden="true">
                 <h2 class="reveal">The Revolution We Enable</h2>
                 <p class="section-eyebrow reveal">Five Frontiers, One Architecture</p>
 
@@ -4240,6 +4500,56 @@ l-22 93 24 55 c14 32 29 93 35 142 13 110 13 121 0 155 -9 24 -16 27 -54 27
     <script>
         // Shared constant: sticky header height offset for scroll calculations
         const HEADER_OFFSET = 56;
+
+        // ==========================================
+        //  Sticky stripnav (Style B) — scroll-spy + progress fill
+        // ==========================================
+        (function() {
+            const strip = document.getElementById('dlnlStripnav');
+            if (!strip) return;
+            const progressEl = document.getElementById('dlnlStripnavProgress');
+            const nodes = Array.from(strip.querySelectorAll('.dlnl-stripnav__node'));
+            const targets = nodes.map(n => ({ node: n, target: document.getElementById(n.dataset.target) })).filter(t => t.target);
+            if (!targets.length) return;
+
+            let ticking = false;
+            function update() {
+                const scrollY = window.scrollY;
+                const docH = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docH > 0 ? Math.min(100, Math.max(0, (scrollY / docH) * 100)) : 0;
+                if (progressEl) progressEl.style.width = pct + '%';
+
+                // Scroll-spy: pick last target whose top is above the viewport reference line (1/3 from top)
+                const refLine = window.innerHeight * 0.34 + scrollY;
+                let activeIdx = -1;
+                for (let i = 0; i < targets.length; i++) {
+                    const top = targets[i].target.getBoundingClientRect().top + window.scrollY;
+                    if (top <= refLine) activeIdx = i;
+                }
+                nodes.forEach((n, i) => n.classList.toggle('active', i === activeIdx));
+                ticking = false;
+            }
+            window.addEventListener('scroll', () => {
+                if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+            }, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+        })();
+
+        // Redirect legacy #revolution anchor to slide 3
+        (function() {
+            function maybeRedirect() {
+                if (window.location.hash === '#revolution') {
+                    const target = document.getElementById('dlnl-claim-slide-3');
+                    if (target) {
+                        history.replaceState(null, '', '#dlnl-claim-slide-3');
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+            window.addEventListener('DOMContentLoaded', maybeRedirect);
+            window.addEventListener('hashchange', maybeRedirect);
+        })();
 
         // ==========================================
         //  Stakeholder data
